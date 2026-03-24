@@ -1,0 +1,223 @@
+.hero-section {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding-top: 10vh;
+  /* Atmospheric depth gradient */
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(255, 51, 102, 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 90% 10%, rgba(255, 255, 255, 0.02) 0%, transparent 55%),
+    var(--bg-color);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-pre-title {
+  font-size: 0.78rem;
+  letter-spacing: 0.35em;
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-family: 'Outfit', sans-serif;
+}
+
+.hero-title-wrapper {
+  margin-bottom: 4rem;
+  line-height: 0.88;
+}
+
+.hero-title {
+  font-size: clamp(5rem, 12vw, 13rem);
+  text-transform: uppercase;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  letter-spacing: -0.04em;
+}
+
+.line-reveal {
+  display: block;
+  overflow: hidden; /* For GSAP reveal animation */
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+  transform: translateY(100px); /* fallback before GSAP */
+}
+
+.hero-description {
+  font-size: clamp(1.1rem, 1.8vw, 1.6rem);
+  color: var(--text-muted);
+  max-width: 560px;
+  line-height: 1.6;
+  margin-bottom: 6rem;
+  opacity: 0;
+  font-weight: 300;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.01em;
+}
+
+.scroll-indicator {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  opacity: 0;
+  /* sits at the bottom-left of the hero content */
+}
+
+/* Vertical animated line */
+.scroll-line {
+  width: 1px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+/* The gliding dot */
+.scroll-dot {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 1px;
+  height: 40%;
+  background: var(--accent-color);
+  border-radius: 2px;
+  animation: scroll-slide 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes scroll-slide {
+  0%   { top: -40%; opacity: 1; }
+  60%  { top: 100%;  opacity: 1; }
+  61%  { opacity: 0; }
+  100% { top: 100%;  opacity: 0; }
+}
+
+.scroll-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 400;
+}
+
+/* Marquee */
+.marquee-wrapper {
+  position: absolute;
+  bottom: -2vw;
+  left: 0;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.marquee-content {
+  display: inline-block;
+  font-size: clamp(6rem, 15vw, 15rem);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  /* GSAP will handle the animation, but we can set a base layout */
+}
+
+.marquee-content span {
+  padding-right: 2rem;
+}
+
+.header-logo {
+  position: absolute;
+  top: 2rem;
+  left: 4vw;
+  z-index: 10;
+}
+
+.header-logo img {
+  height: 40px;
+  width: auto;
+  image-rendering: pixelated;
+}
+
+.header-actions {
+  position: absolute;
+  top: 2rem;
+  right: 4vw;
+  z-index: 10;
+}
+
+.header-link {
+  color: var(--text-color);
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  font-weight: 500;
+  position: relative;
+  padding-bottom: 0.25rem;
+}
+
+.header-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: right;
+}
+
+.header-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hero-graphics {
+  position: absolute;
+  top: 15%;
+  right: 5vw;
+  width: 45vw;
+  max-width: 550px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0; /* for GSAP reveal */
+}
+
+.floating-portrait {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.8));
+}
+
+.tech-badge-img {
+  position: absolute;
+  bottom: 10%;
+  left: -20%;
+  width: 60%;
+  max-width: 300px;
+  height: auto;
+  animation: float 6s ease-in-out infinite;
+  filter: invert(1); /* Assuming black signature, make it white for dark theme */
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px) rotate(-5deg); }
+  50% { transform: translateY(-20px) rotate(0deg); }
+  100% { transform: translateY(0px) rotate(-5deg); }
+}

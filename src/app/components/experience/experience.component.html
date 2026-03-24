@@ -1,0 +1,39 @@
+<section class="experience-section section-padding">
+  <div class="container">
+
+    <!-- Ghost backdrop -->
+    <div class="exp-ghost-header" aria-hidden="true">
+      <span class="ghost-label">WORK</span>
+    </div>
+
+    <div class="exp-luxury-grid">
+
+      <!-- Sticky left anchor -->
+      <div class="exp-sticky-label">
+        <span class="vertical-label">Selected Work Experience</span>
+        <div class="label-line"></div>
+      </div>
+
+      <!-- Timeline rows -->
+      <div class="exp-timeline" #expContainer>
+        @for (exp of experiences; track exp.company; let i = $index) {
+          <div class="exp-row interactive">
+            <div class="exp-row-top">
+              <span class="exp-index text-muted">0{{ i + 1 }}</span>
+              <span class="exp-date text-muted text-uppercase">{{ exp.date }}</span>
+            </div>
+            <h3 class="exp-role-title">{{ exp.role }}</h3>
+            <div class="exp-company-line">
+              <span class="exp-company-name">{{ exp.company }}</span>
+              <div class="exp-company-bar"></div>
+            </div>
+            <div class="exp-desc-reveal">
+              <div class="exp-desc-inner"><p>{{ exp.desc }}</p></div>
+            </div>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

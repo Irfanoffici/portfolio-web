@@ -1,0 +1,207 @@
+[33m❯[39m Building...
+[32m✔[39m Building...
+Application bundle generation failed. [15.548 seconds] - 2026-03-23T12:15:52.252Z
+
+[1m[31m[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../components/hero/hero.component' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:2:30:
+[37m      2 │ import { HeroComponent } from [32m'../components/hero/hero.component'[37m;
+        ╵                               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../components/about/about.component' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:3:31:
+[37m      3 │ import { AboutComponent } from [32m'../components/about/about.component'[37m;
+        ╵                                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../components/services/services.component' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:4:34:
+[37m      4 │ ...rvicesComponent } from [32m'../components/services/services.component'[37m;
+        ╵                           [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../components/experience/experience.component' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:5:36:
+[37m      5 │ ...ceComponent } from [32m'../components/experience/experience.component'[37m;
+        ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../components/tech-stack/tech-stack.component' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:6:35:
+[37m      6 │ ...ckComponent } from [32m'../components/tech-stack/tech-stack.component'[37m;
+        ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../components/education/education.component' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:7:35:
+[37m      7 │ ...tionComponent } from [32m'../components/education/education.component'[37m;
+        ╵                         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mTS2307: Cannot find module '../components/footer/footer.component' or its corresponding type declarations.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:8:32:
+[37m      8 │ ...t { FooterComponent } from [32m'../components/footer/footer.component'[37m;
+        ╵                               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:14:4:
+[37m      14 │     [32mHeroComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/home/home.component.ts:14:4:
+[37m      14 │     [32mHeroComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:15:4:
+[37m      15 │     [32mAboutComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/home/home.component.ts:15:4:
+[37m      15 │     [32mAboutComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:16:4:
+[37m      16 │     [32mServicesComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/home/home.component.ts:16:4:
+[37m      16 │     [32mServicesComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:17:4:
+[37m      17 │     [32mExperienceComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/home/home.component.ts:17:4:
+[37m      17 │     [32mExperienceComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:18:4:
+[37m      18 │     [32mTechStackComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/home/home.component.ts:18:4:
+[37m      18 │     [32mTechStackComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:19:4:
+[37m      19 │     [32mEducationComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/home/home.component.ts:19:4:
+[37m      19 │     [32mEducationComponent[37m,
+         ╵     [32m~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG1010: 'imports' must be an array of components, directives, pipes, or NgModules.
+  Value could not be determined statically.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:20:4:
+[37m      20 │     [32mFooterComponent[37m
+         ╵     [32m~~~~~~~~~~~~~~~[0m
+
+  Unknown reference.
+
+    src/app/pages/home/home.component.ts:20:4:
+[37m      20 │     [32mFooterComponent[37m
+         ╵     [32m~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mNG2008: Could not find stylesheet file './home.component.css'.[0m [1m[35m[plugin angular-compiler][0m
+
+    src/app/pages/home/home.component.ts:23:12:
+[37m      23 │   styleUrl: [32m'./home.component.css'[37m
+         ╵             [32m~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../components/hero/hero.component"[0m
+
+    src/app/pages/home/home.component.ts:2:30:
+[37m      2 │ import { HeroComponent } from [32m'../components/hero/hero.component'[37m;
+        ╵                               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../components/about/about.component"[0m
+
+    src/app/pages/home/home.component.ts:3:31:
+[37m      3 │ import { AboutComponent } from [32m'../components/about/about.component'[37m;
+        ╵                                [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../components/services/services.component"[0m
+
+    src/app/pages/home/home.component.ts:4:34:
+[37m      4 │ ...rvicesComponent } from [32m'../components/services/services.component'[37m;
+        ╵                           [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../components/experience/experience.component"[0m
+
+    src/app/pages/home/home.component.ts:5:36:
+[37m      5 │ ...ceComponent } from [32m'../components/experience/experience.component'[37m;
+        ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../components/tech-stack/tech-stack.component"[0m
+
+    src/app/pages/home/home.component.ts:6:35:
+[37m      6 │ ...ckComponent } from [32m'../components/tech-stack/tech-stack.component'[37m;
+        ╵                       [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../components/education/education.component"[0m
+
+    src/app/pages/home/home.component.ts:7:35:
+[37m      7 │ ...tionComponent } from [32m'../components/education/education.component'[37m;
+        ╵                         [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+
+[31mX [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "../components/footer/footer.component"[0m
+
+    src/app/pages/home/home.component.ts:8:32:
+[37m      8 │ ...t { FooterComponent } from [32m'../components/footer/footer.component'[37m;
+        ╵                               [32m~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[39m[22m

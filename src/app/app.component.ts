@@ -1,36 +1,41 @@
-import { Component, signal, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, CommonModule],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.css'
 })
-export class App implements OnInit, OnDestroy {
-  protected readonly title = signal('angular-portfolio');
-  
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+  title = 'angular-portfolio';
   lenis!: Lenis;
   isNavOpen = false;
+
+  @ViewChild('customCursor') customCursor!: ElementRef;
 
   ngOnInit() {
     this.initLenis();
   }
 
+  ngAfterViewInit() {
+    this.initCursor();
+  }
+
   initLenis() {
     this.lenis = new Lenis({
-      lerp: 0.07,           // Honey-smooth
+      lerp: 0.07,           // Honey-smooth — 0.07 is buttery without being laggy
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 0.85, 
+      wheelMultiplier: 0.85, // Slightly slower wheel for more control
       touchMultiplier: 2,
     });
 
@@ -42,7 +47,7 @@ export class App implements OnInit, OnDestroy {
 
     gsap.ticker.lagSmoothing(0);
 
-    // Section reveal
+    // Section reveal — IntersectionObserver (lighter than ScrollTrigger)
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -61,22 +66,37 @@ export class App implements OnInit, OnDestroy {
     });
   }
 
+  initCursor() {
+    const cursor = this.customCursor.nativeElement;
+    
+    // Smooth trailing cursor — cinematic feel
+    const xTo = gsap.quickTo(cursor, 'x', { duration: 0.35, ease: 'power2.out' });
+    const yTo = gsap.quickTo(cursor, 'y', { duration: 0.35, ease: 'power2.out' });
+
+    window.addEventListener("mousemove", (e) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+    });
+
+    // Handle hover states on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, input, textarea, .interactive');
+    
+    interactiveElements.forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        cursor.classList.add('active');
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.classList.remove('active');
+      });
+    });
+  }
+
   toggleNav() {
     this.isNavOpen = !this.isNavOpen;
     if (this.isNavOpen) {
       this.lenis?.stop();
-      gsap.to('.nav-bg', { opacity: 1, duration: 0.6, ease: 'power2.out' });
-      gsap.to('.nav-overlay', { autoAlpha: 1, duration: 0.1 });
-      gsap.to('.nav-text', { y: '0%', opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power4.out', delay: 0.2 });
-      gsap.to('.nav-socials', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.6 });
-      gsap.to('.nav-footer', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.6 });
     } else {
       this.lenis?.start();
-      gsap.to('.nav-text', { y: '110%', opacity: 0, duration: 0.4, ease: 'power2.in' });
-      gsap.to('.nav-socials', { opacity: 0, y: 20, duration: 0.4, ease: 'power2.in' });
-      gsap.to('.nav-footer', { opacity: 0, y: 20, duration: 0.4, ease: 'power2.in' });
-      gsap.to('.nav-bg', { opacity: 0, duration: 0.6, ease: 'power2.in', delay: 0.2 });
-      gsap.to('.nav-overlay', { autoAlpha: 0, duration: 0.1, delay: 0.8 });
     }
   }
 

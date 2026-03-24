@@ -1,8 +1,11 @@
 <router-outlet></router-outlet>
 
+<!-- Custom Cursor -->
+<div class="custom-cursor" #customCursor aria-hidden="true"></div>
+
 <!-- Global Header Logo (Floating) -->
 <div class="global-logo interactive" (click)="toggleNav()" [class.nav-open]="isNavOpen">
-  <img loading="lazy" decoding="async" src="mi-logo.png" alt="MI Logo">
+  <img loading="lazy" decoding="async" src="assets/images/mi-logo.png" alt="MI Logo">
   <div class="logo-text-flipper">
     <span class="flipper-text text-menu">MENU</span>
     <span class="flipper-text text-close">CLOSE</span>

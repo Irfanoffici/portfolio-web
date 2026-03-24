@@ -1,0 +1,25 @@
+<section class="services-section section-padding">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="text-uppercase section-title">What I do best?</h2>
+    </div>
+    
+    <div class="services-list" #servicesList>
+      @for (s of services; track s.name; let i = $index) {
+        <div class="service-item interactive">
+          <div class="service-number text-muted">0{{ i + 1 }}.</div>
+          <div class="service-info">
+            <h3 class="service-name">{{ s.name }}</h3>
+            <div class="service-desc-short">{{ s.desc }}</div>
+            <div class="service-details-grid">
+              <div class="service-details-inner"><p class="service-details-text">{{ s.extendedDesc }}</p></div>
+            </div>
+          </div>
+          <div class="service-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

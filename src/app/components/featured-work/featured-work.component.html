@@ -1,0 +1,46 @@
+<section class="featured-work-section section-padding" id="works">
+  <div class="container">
+
+    <!-- Ghost backdrop -->
+    <div class="fw-ghost-header" aria-hidden="true">
+      <span class="ghost-label">WORK</span>
+    </div>
+
+    <div class="fw-luxury-grid">
+
+      <!-- Sticky left anchor -->
+      <div class="fw-sticky-label">
+        <span class="vertical-label">Featured Contributions</span>
+        <div class="label-line"></div>
+        <p class="fw-subtext text-muted">What I excel at is turning complex ideas into scalable realities.</p>
+      </div>
+
+      <!-- Project rows -->
+      <div class="fw-projects" #workContainer>
+        @for (project of projects; track project.name; let i = $index) {
+          <a [href]="project.link" target="_blank" class="fw-row interactive">
+            <div class="fw-row-top">
+              <span class="fw-index text-muted">0{{ i + 1 }}</span>
+              <span class="fw-type text-muted text-uppercase">{{ project.type }}</span>
+              <svg class="fw-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+              </svg>
+            </div>
+            <h3 class="fw-project-name">{{ project.name }}</h3>
+            <div class="fw-desc-reveal">
+              <div class="fw-desc-inner">
+                <p>{{ project.desc }}</p>
+                <div class="fw-tags">
+                  @for (tag of project.tags; track tag) {
+                    <span class="fw-tag">{{ tag }}</span>
+                  }
+                </div>
+              </div>
+            </div>
+          </a>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

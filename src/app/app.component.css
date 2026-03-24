@@ -1,3 +1,34 @@
+/* ── Custom Cursor ── */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: exclusion;
+  transition:
+    width  0.45s var(--ease-honey),
+    height 0.45s var(--ease-honey),
+    background-color 0.3s ease,
+    border-radius 0.45s var(--ease-honey);
+  will-change: transform;
+}
+
+.custom-cursor.active {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border: 1px solid rgba(255, 51, 102, 0.7);
+  box-shadow: 0 0 20px rgba(255, 51, 102, 0.15), inset 0 0 20px rgba(255, 51, 102, 0.05);
+  mix-blend-mode: normal;
+  backdrop-filter: blur(3px);
+}
+
 /* ═══════════════════════════════════════════════
    GLOBAL FLOATING LOGO / MENU BUTTON
 ═══════════════════════════════════════════════ */
@@ -10,15 +41,15 @@
   align-items: center;
   gap: 1.5rem;
   cursor: pointer;
-  mix-blend-mode: difference;
 }
 
 .global-logo img {
   height: 40px;
   width: auto;
-  image-rendering: pixelated;
+  image-rendering: auto;
   transition: transform 0.6s var(--ease-honey);
   will-change: transform;
+  filter: brightness(0) invert(1);
 }
 
 .global-logo:hover img {
@@ -34,7 +65,7 @@
   font-size: 0.85rem;
   letter-spacing: 0.2em;
   font-weight: 500;
-  color: var(--text-color);
+  color: var(--accent-color);
 }
 
 .flipper-text {
@@ -119,14 +150,12 @@
   cursor: pointer;
   padding: 1.5vh 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  /* Hover effect setup */
   transition: padding-left 0.6s var(--ease-honey);
-  overflow: hidden;
 }
 
-@media (min-width: 1024px) {
-  .nav-item:hover {
-    padding-left: 3vw;
-  }
+.nav-item:hover {
+  padding-left: 3vw;
 }
 
 .nav-num {
@@ -135,6 +164,7 @@
   font-weight: 300;
   color: var(--accent-color);
   margin-top: clamp(0.5rem, 1.5vw, 1.5rem);
+  /* Reveal styling */
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s var(--ease-honey), transform 0.8s var(--ease-honey);
@@ -148,18 +178,29 @@
   letter-spacing: -0.04em;
   margin: 0;
   text-transform: uppercase;
+  /* Premium hollow styling */
   color: transparent;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
-  transform: translateY(110%);
-  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-              color 0.5s var(--ease-honey), 
-              -webkit-text-stroke 0.5s var(--ease-honey);
-  will-change: transform;
+  transition: color 0.5s var(--ease-honey), -webkit-text-stroke 0.5s var(--ease-honey);
 }
 
 .nav-item:hover .nav-text {
   color: var(--text-color);
   -webkit-text-stroke: 1px transparent;
+}
+
+/* ── Staggered Reveal Animation ── */
+/* Text wrapper to hide overflow */
+.nav-item {
+  overflow: hidden;
+}
+
+.nav-text {
+  transform: translateY(110%);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
+              color 0.5s var(--ease-honey), 
+              -webkit-text-stroke 0.5s var(--ease-honey);
+  will-change: transform;
 }
 
 /* When active, items slide up */

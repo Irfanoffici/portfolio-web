@@ -1,0 +1,256 @@
+.tech-stack-section {
+  background-color: var(--bg-color);
+  padding: 15vh 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.luxury-main-header {
+  margin-bottom: 10vh;
+  text-align: center;
+}
+
+.ultra-massive-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(4rem, 15vw, 15vw);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.luxury-stack-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12vh;
+}
+
+/* ═══ CATEGORY SECTION BASE ═══ */
+.luxury-category-section {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .luxury-category-section {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* ═══ STICKY LEFT ANCHOR ═══ */
+.sticky-category-header {
+  width: 100%;
+  margin-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+@media (min-width: 1024px) {
+  .sticky-category-header {
+    width: 35%;
+    margin-bottom: 0;
+    padding-right: 5rem;
+    position: sticky;
+    top: 15vh;
+  }
+}
+
+.cat-anchor-top {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.cat-decorator {
+  font-size: 1.4rem;
+  transition: transform 0.6s var(--ease-honey), color 0.4s ease;
+  will-change: transform;
+}
+
+.category-index {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.category-vertical-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+  margin-top: 0.2rem;
+  transition: color 0.4s ease;
+}
+
+.cat-tagline {
+  font-size: 0.9rem;
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.5;
+  color: var(--text-muted);
+  max-width: 240px;
+  border-left: 1px solid;
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+  transition: border-color 0.4s ease;
+}
+
+/* ═══ TOOL ROWS ═══ */
+.category-tools-list {
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .category-tools-list {
+    width: 65%;
+  }
+}
+
+.border-top {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.luxury-tool-row {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 3.5rem 0;
+  cursor: default;
+  position: relative;
+  transition: padding-left 0.5s var(--ease-honey);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .luxury-tool-row:hover {
+    padding-left: 2vw;
+  }
+}
+
+/* Tool name — outline that fills on hover */
+.massive-tool-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  transition: color 0.55s var(--ease-honey), -webkit-text-stroke 0.55s var(--ease-honey), transform 0.55s var(--ease-honey);
+  will-change: transform, color;
+}
+
+.luxury-tool-row:hover .massive-tool-name {
+  color: var(--text-color);
+  -webkit-text-stroke: 1px transparent;
+  transform: translateX(1vw);
+}
+
+/* Grid-row reveal (GPU composited) */
+.tool-hover-grid {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.65s var(--ease-honey);
+  will-change: grid-template-rows;
+}
+
+@media (min-width: 1024px) {
+  .tool-hover-grid {
+    grid-template-rows: 0fr;
+  }
+  .luxury-tool-row:hover .tool-hover-grid {
+    grid-template-rows: 1fr;
+  }
+}
+
+.tool-hover-inner {
+  overflow: hidden;
+}
+
+.tool-hover-inner p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 600px;
+  padding-top: 1.5rem;
+}
+
+/* ═══════════════════════════════════════
+   UNIQUE PER-CATEGORY TREATMENTS
+═══════════════════════════════════════ */
+
+/* ── 01 FRONTEND — Warm geometric feel ── */
+.cat--frontend .cat-decorator        { color: #ff6b9d; }
+.cat--frontend .category-vertical-title { color: #ff6b9d; }
+.cat--frontend .cat-tagline          { border-color: #ff6b9d; }
+.cat--frontend .luxury-tool-row:hover .massive-tool-name { color: #ff6b9d; -webkit-text-stroke: 1px transparent; }
+.cat--frontend .luxury-tool-row:hover .massive-tool-name { color: #ff6b9d; }
+.cat--frontend .cat-decorator        { animation: spin-slow 12s linear infinite; display: inline-block; }
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg);   }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── 02 BACKEND — Cool technical blueprint ── */
+.cat--backend .cat-decorator         { color: #64d4f4; font-size: 1.2rem; }
+.cat--backend .category-vertical-title { color: #64d4f4; letter-spacing: 0.3em; }
+.cat--backend .cat-tagline           { border-color: #64d4f4; }
+.cat--backend .luxury-tool-row:hover .massive-tool-name { color: #64d4f4; -webkit-text-stroke: 1px transparent; }
+/* Blueprint grid overlay on hover */
+.cat--backend .luxury-tool-row::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(100, 212, 244, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(100, 212, 244, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.cat--backend .luxury-tool-row:hover::after { opacity: 1; }
+
+/* ── 03 AI — Pulsing ethereal glow ── */
+.cat--ai .cat-decorator              { color: #c084fc; animation: pulse-glow 2.5s ease-in-out infinite; display: inline-block; }
+.cat--ai .category-vertical-title   { color: #c084fc; }
+.cat--ai .cat-tagline                { border-color: #c084fc; }
+.cat--ai .luxury-tool-row:hover .massive-tool-name { color: #c084fc; -webkit-text-stroke: 1px transparent; }
+/* Radial glow on hover */
+.cat--ai .luxury-tool-row {
+  transition: padding-left 0.5s var(--ease-honey), box-shadow 0.6s ease;
+}
+.cat--ai .luxury-tool-row:hover {
+  box-shadow: inset 0 0 80px rgba(192, 132, 252, 0.04);
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.5; transform: scale(1.15); }
+}
+
+/* ── 04 CORE — Structural gold foundation ── */
+.cat--core .cat-decorator            { color: #f4c26a; letter-spacing: 0.1em; }
+.cat--core .category-vertical-title  { color: #f4c26a; letter-spacing: 0.35em; }
+.cat--core .cat-tagline              { border-color: #f4c26a; }
+.cat--core .luxury-tool-row:hover .massive-tool-name { color: #f4c26a; -webkit-text-stroke: 1px transparent; }
+/* Bottom fill bar on hover */
+.cat--core .luxury-tool-row::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 0;
+  background: #f4c26a;
+  transition: width 0.6s var(--ease-honey);
+}
+.cat--core .luxury-tool-row:hover::before { width: 100%; }

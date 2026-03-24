@@ -1,0 +1,39 @@
+<section class="education-section section-padding">
+  <div class="container">
+
+    <!-- Enormous ghost backdrop -->
+    <div class="edu-ghost-header" aria-hidden="true">
+      <span class="ghost-label">EDU</span>
+    </div>
+
+    <div class="edu-luxury-grid">
+
+      <!-- Sticky left anchor -->
+      <div class="edu-sticky-label">
+        <span class="vertical-label">Education &amp; Background</span>
+        <div class="label-line"></div>
+      </div>
+
+      <!-- Education rows -->
+      <div class="edu-timeline" #eduList>
+        @for (edu of educations; track edu.school; let i = $index) {
+          <div class="edu-row interactive">
+            <div class="edu-row-top">
+              <span class="edu-index text-muted">0{{ i + 1 }}</span>
+              <span class="edu-date text-muted text-uppercase">{{ edu.date }}</span>
+            </div>
+            <h3 class="edu-school-title">{{ edu.school }}</h3>
+            <div class="edu-degree-line">
+              <span class="edu-degree-text">{{ edu.degree }}</span>
+              <div class="edu-degree-bar"></div>
+            </div>
+            <div class="edu-details-reveal">
+              <div class="edu-details-inner"><p>{{ edu.details }}</p></div>
+            </div>
+          </div>
+        }
+      </div>
+
+    </div>
+  </div>
+</section>

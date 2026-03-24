@@ -1,0 +1,202 @@
+.education-section {
+  background-color: #060606;
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ── Ghost backdrop ── */
+.edu-ghost-header {
+  margin-bottom: -8rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ghost-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(6rem, 25vw, 25rem);
+  font-weight: 900;
+  line-height: 0.8;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+  text-transform: uppercase;
+  display: block;
+}
+
+/* ── Main grid ── */
+.edu-luxury-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  position: relative;
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .edu-luxury-grid {
+    grid-template-columns: 220px 1fr;
+    gap: 8vw;
+    align-items: flex-start;
+  }
+}
+
+/* ── Sticky label ── */
+.edu-sticky-label {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .edu-sticky-label {
+    flex-direction: column;
+    align-items: flex-start;
+    position: sticky;
+    top: 20vh;
+  }
+}
+
+.vertical-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--accent-color);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.label-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(255,255,255,0.12);
+}
+
+@media (min-width: 1024px) {
+  .label-line {
+    width: 1px;
+    height: 60px;
+    flex: none;
+    margin-top: 1rem;
+  }
+}
+
+/* ── Timeline rows ── */
+.edu-timeline {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.edu-row {
+  padding: 4.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  position: relative;
+  cursor: default;
+  transition: padding-left 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+  .edu-row:hover {
+    padding-left: 2rem;
+  }
+}
+
+.edu-row-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edu-index {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  transition: color 0.4s ease;
+}
+
+.edu-row:hover .edu-index {
+  color: var(--accent-color);
+}
+
+.edu-date {
+  font-size: 0.78rem;
+  letter-spacing: 0.15em;
+}
+
+/* Big outline title */
+.edu-school-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2rem, 5.5vw, 5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.28);
+  text-transform: uppercase;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.edu-row:hover .edu-school-title {
+  color: var(--text-color);
+  -webkit-text-stroke: 1px transparent;
+}
+
+/* Degree + bar */
+.edu-degree-line {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.edu-degree-text {
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--accent-color);
+  white-space: nowrap;
+}
+
+.edu-degree-bar {
+  height: 1px;
+  flex: 1;
+  min-width: 30px;
+  background: rgba(255, 51, 102, 0.25);
+  transition: background 0.5s ease;
+}
+
+.edu-row:hover .edu-degree-bar {
+  background: var(--accent-color);
+}
+
+/* Reveal paragraph */
+.edu-details-reveal {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.65s var(--ease-honey);
+  will-change: grid-template-rows;
+}
+
+@media (min-width: 1024px) {
+  .edu-details-reveal {
+    grid-template-rows: 0fr;
+  }
+  .edu-row:hover .edu-details-reveal {
+    grid-template-rows: 1fr;
+  }
+}
+
+.edu-details-inner {
+  overflow: hidden;
+}
+
+.edu-details-inner p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  font-weight: 300;
+  max-width: 700px;
+  padding-top: 0.5rem;
+}

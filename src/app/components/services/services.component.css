@@ -1,0 +1,131 @@
+.services-section {
+  background-color: var(--bg-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 4rem;
+  color: var(--text-color);
+}
+
+.services-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 50px;
+  align-items: flex-start;
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.service-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+  transition: width 0.4s ease;
+  z-index: 0;
+}
+
+.service-item:hover {
+  border-bottom-color: var(--accent-color);
+}
+
+.service-item:hover::before {
+  width: 100%;
+}
+
+.service-number, .service-info, .service-icon {
+  position: relative;
+  z-index: 1;
+}
+
+.service-number {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--text-muted);
+}
+
+.service-name {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  transition: color 0.4s ease;
+}
+
+.service-item:hover .service-name {
+  color: var(--accent-color);
+}
+
+.service-desc-short {
+  font-size: 1rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.4s var(--ease-honey), transform 0.4s var(--ease-honey);
+  max-width: 500px;
+  will-change: transform, opacity;
+}
+
+/* Grid row reveal — GPU composited, no layout reflow */
+.service-details-grid {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.65s var(--ease-honey);
+  will-change: grid-template-rows;
+}
+
+@media (min-width: 1024px) {
+  .service-desc-short {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  .service-item:hover .service-desc-short {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .service-details-grid {
+    grid-template-rows: 0fr;
+  }
+  .service-item:hover .service-details-grid {
+    grid-template-rows: 1fr;
+  }
+}
+
+.service-details-inner {
+  overflow: hidden;
+}
+
+.service-details-text {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 800px;
+  padding-top: 1.5rem;
+}
+
+.service-icon {
+  text-align: right;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s ease;
+  color: var(--accent-color);
+  margin-top: 0.5rem;
+}
+
+.service-item:hover .service-icon {
+  opacity: 1;
+  transform: translateX(0);
+}

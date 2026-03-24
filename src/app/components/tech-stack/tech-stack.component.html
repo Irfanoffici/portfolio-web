@@ -1,0 +1,41 @@
+<section class="tech-stack-section section-padding" id="arsenal">
+  <div class="container relative">
+    
+    <div class="luxury-main-header">
+      <h2 class="ultra-massive-text">ARSENAL</h2>
+    </div>
+
+    <div class="luxury-stack-container">
+      @for (cat of techCategories; track cat.category; let i = $index) {
+        
+        <div class="luxury-category-section cat--{{ cat.theme }}">
+          <!-- Sticky left anchor — unique per category -->
+          <div class="sticky-category-header">
+            <div class="cat-anchor-top">
+              <span class="cat-decorator">{{ cat.decorator }}</span>
+              <span class="category-index">0{{ i + 1 }}</span>
+            </div>
+            <h3 class="category-vertical-title">{{ cat.category }}</h3>
+            <p class="cat-tagline">{{ cat.tagline }}</p>
+          </div>
+          
+          <!-- Tool rows -->
+          <div class="category-tools-list border-top">
+            @for (tool of cat.tools; track tool.name) {
+              <div class="luxury-tool-row interactive">
+                <h2 class="massive-tool-name">{{ tool.name }}</h2>
+                <div class="tool-hover-grid">
+                  <div class="tool-hover-inner">
+                    <p>{{ tool.extendedDesc }}</p>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+      }
+    </div>
+
+  </div>
+</section>
