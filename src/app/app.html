@@ -1,9 +1,8 @@
 <router-outlet></router-outlet>
 
 <!-- Global Tooltip (for Arsenal section etc) -->
-<div class="ars-tooltip-global" #globalTooltip [hidden]="!tooltipService.hoveredTool()">
+<div class="ars-tooltip-global idle-float" #globalTooltip [hidden]="!tooltipService.hoveredTool()">
   <div class="ars-tt-inner" *ngIf="tooltipService.hoveredTool() as tool">
-    <h4>{{ tool.name }}</h4>
     <p>{{ tool.extendedDesc }}</p>
   </div>
 </div>

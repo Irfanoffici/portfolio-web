@@ -6,21 +6,19 @@
   z-index: 11000;
   background-color: #0c0c0c;
   border: 1px solid rgba(255,255,255,0.1);
-  padding: 1.5rem 2rem;
-  max-width: 380px;
+  padding: 1.2rem 1.8rem;
+  max-width: 320px;
   box-shadow: 0 40px 80px rgba(0,0,0,0.8);
   will-change: transform;
-  display: block; /* ensure [hidden] works correctly */
+  display: block;
 }
 
-.ars-tt-inner h4 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.25rem;
-  margin-bottom: .8rem;
-  color: var(--accent-color);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
+@keyframes idleFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(1deg); }
+}
+.idle-float {
+  animation: idleFloat 4s ease-in-out infinite;
 }
 
 .ars-tt-inner p {

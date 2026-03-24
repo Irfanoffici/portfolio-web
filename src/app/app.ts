@@ -43,8 +43,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
     this.ngZone.runOutsideAngular(() => {
       window.addEventListener('mousemove', (e) => {
-        // Move global tooltip if it exists and is active
-        if (this.globalTooltip) {
+        if (this.globalTooltip && this.tooltipService.hoveredTool()) {
           gsap.to(this.globalTooltip.nativeElement, {
             x: e.clientX + 10,
             y: e.clientY + 10,
@@ -53,6 +52,9 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
           });
         }
       });
+      
+      // Final safety: if window loses focus, hide tooltip
+      window.addEventListener('blur', () => this.tooltipService.hide());
     });
   }
 
