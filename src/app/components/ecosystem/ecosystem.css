@@ -36,33 +36,46 @@
 .eco-canvas {
   position: relative;
   width: 100%;
-  height: 150vh; /* Extra height for kinetic scattering */
+  height: 180vh; /* Increased height for better vertical dispersion */
   margin-top: -10vh;
+}
+
+/* Dim non-hovered items for 'Focus' mode */
+.eco-canvas:hover .tool-node:not(:hover) {
+  opacity: 0.1;
+  filter: blur(4px);
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .tool-node {
   position: absolute;
   z-index: 1;
   transform-origin: center;
-  will-change: transform;
+  will-change: transform, opacity, filter;
+  transition: opacity 0.6s cubic-bezier(0.19, 1, 0.22, 1), filter 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .tool-content {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1.5rem;
   cursor: crosshair;
 }
 
 .tool-cat-small {
   font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 700;
   color: var(--accent-color);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.4;
   margin-bottom: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.tool-node:hover .tool-cat-small {
+  opacity: 1;
 }
 
 .tool-name {
@@ -72,9 +85,9 @@
   line-height: 1;
   text-transform: uppercase;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.2);
   display: block;
-  transition: all 0.5s var(--ease-honey);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   letter-spacing: -0.02em;
 }
 
@@ -85,45 +98,80 @@
   top: 0; left: 0;
   width: 100%; height: 100%;
   z-index: -1;
-  transition: all 0.5s var(--ease-honey);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   pointer-events: none;
 }
 
 .tool-name::before {
-  -webkit-text-stroke: 0.5px rgba(255,255,255,0.1);
-  transform: translate(3px, -3px);
+  -webkit-text-stroke: 0.5px rgba(255,255,255,0.05);
+  transform: translate(2px, -2px);
 }
 
 .tool-name::after {
   -webkit-text-stroke: 0.5px rgba(255,51,102,0.1);
-  transform: translate(-2px, 2px);
+  transform: translate(-1px, 1px);
   opacity: 0;
 }
 
+.tool-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  color: #fff;
+  margin-top: 1.2rem;
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+  max-width: 280px;
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(12px);
+  padding: 1.2rem 1.5rem;
+  border-left: 2px solid var(--accent-color);
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.tool-node:hover .tool-desc {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sizing Weights */
+.size-xlarge { z-index: 5; }
+.size-xlarge .tool-name { font-size: clamp(3rem, 6.5vw, 6.5rem); -webkit-text-stroke: 1.5px rgba(255,255,255,0.35); }
+
+.size-large { z-index: 4; }
+.size-large .tool-name { font-size: clamp(2rem, 4.5vw, 4.5rem); -webkit-text-stroke: 1px rgba(255,255,255,0.25); }
+
+.size-medium { z-index: 3; }
+.size-medium .tool-name { font-size: clamp(1.2rem, 2.8vw, 2.8rem); -webkit-text-stroke: 1px rgba(255,255,255,0.15); }
+
+.size-small { z-index: 2; }
+.size-small .tool-name { font-size: clamp(0.9rem, 1.8vw, 1.8rem); -webkit-text-stroke: 0.5px rgba(255,255,255,0.1); }
+
 .tool-node:hover .tool-name {
-  -webkit-text-stroke: 1px rgba(255,255,255,0.8);
-  transform: scale(1.05);
+  -webkit-text-stroke: 1.5px rgba(255,255,255,1);
+  transform: scale(1.02);
 }
 
 .tool-node:hover .tool-name::after {
   opacity: 1;
-  transform: translate(-5px, 5px);
-  -webkit-text-stroke: 1px rgba(255,51,102,0.4);
+  transform: translate(-4px, 4px);
+  -webkit-text-stroke: 1px rgba(255,51,102,0.5);
 }
 
 .eco-background-label {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-15deg);
+  transform: translate(-50%, -50%) rotate(-10deg);
   font-family: 'Outfit', sans-serif;
-  font-size: 25vw;
+  font-size: 28vw;
   font-weight: 900;
-  color: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.015);
   white-space: nowrap;
   pointer-events: none;
   z-index: 0;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.03);
 }
 
 /* Luxury brutalist touches */
