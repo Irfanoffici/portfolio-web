@@ -5,9 +5,12 @@
   border-top: 1px solid rgba(255,255,255,0.05);
   padding: 15vh 0;
 }
-body.light-theme .fw-brutalist-section {
-  background-color: var(--bg-lighter);
-  border-top-color: rgba(0,0,0,0.05);
+.fw-brutalist-section {
+  position: relative;
+  background-color: var(--bg-color);
+  overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 15vh 0;
 }
 
 .container-fw {
@@ -51,9 +54,7 @@ body.light-theme .fw-brutalist-section {
   color: var(--text-color);
   transition: all var(--dur-med) var(--ease-out);
 }
-body.light-theme .fw-monolithic-item { border-bottom-color: rgba(0,0,0,0.1); }
-.fw-monolithic-item:first-child { border-top: 2px solid rgba(255,255,255,0.1); }
-body.light-theme .fw-monolithic-item:first-child { border-top-color: rgba(0,0,0,0.1); }
+
 
 .fw-meta {
   display: flex;
@@ -70,9 +71,11 @@ body.light-theme .fw-monolithic-item:first-child { border-top-color: rgba(0,0,0,
   margin-left: auto;
   transition: transform var(--dur-fast) var(--ease-out);
 }
-.fw-monolithic-item:hover .fw-arrow {
-  transform: translate(15px, -15px);
-  color: var(--accent-color);
+@media (hover: hover) {
+  .fw-monolithic-item:hover .fw-arrow {
+    transform: translate(15px, -15px);
+    color: var(--accent-color);
+  }
 }
 
 .fw-massive-name {
@@ -86,11 +89,13 @@ body.light-theme .fw-monolithic-item:first-child { border-top-color: rgba(0,0,0,
   transition: all var(--dur-med) var(--ease-honey);
   will-change: transform, skew;
 }
-.fw-monolithic-item:hover .fw-massive-name {
-  color: transparent;
-  -webkit-text-stroke: 1.5px var(--accent-color);
-  text-shadow: 10px 10px 0 rgba(255,26,83,0.15);
-  transform: skewX(-8deg) translateX(30px);
+@media (hover: hover) {
+  .fw-monolithic-item:hover .fw-massive-name {
+    color: transparent;
+    -webkit-text-stroke: 1.5px var(--accent-color);
+    text-shadow: 10px 10px 0 rgba(255,26,83,0.15);
+    transform: skewX(-8deg) translateX(30px);
+  }
 }
 
 .fw-hover-reveal {
@@ -98,7 +103,9 @@ body.light-theme .fw-monolithic-item:first-child { border-top-color: rgba(0,0,0,
   grid-template-rows: 0fr;
   transition: grid-template-rows var(--dur-med) var(--ease-honey);
 }
-.fw-monolithic-item:hover .fw-hover-reveal { grid-template-rows: 1fr; }
+@media (hover: hover) {
+  .fw-monolithic-item:hover .fw-hover-reveal { grid-template-rows: 1fr; }
+}
 
 .fw-reveal-inner { overflow: hidden; padding-left: 1rem; }
 .fw-desc {
@@ -123,8 +130,9 @@ body.light-theme .fw-monolithic-item:first-child { border-top-color: rgba(0,0,0,
   letter-spacing: 0.05em;
   transition: all var(--dur-fast) var(--ease-out);
 }
-.fw-monolithic-item:hover .fw-terminal-tag { background-color: var(--text-color); }
-body.light-theme .fw-terminal-tag { color: var(--bg-lighter); background-color: var(--text-color); }
+@media (hover: hover) {
+  .fw-monolithic-item:hover .fw-terminal-tag { background-color: var(--text-color); }
+}
 
 /* ══════════════════════════════════════════════════════
    RESPONSIVE — 1280px

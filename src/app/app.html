@@ -1,8 +1,11 @@
 <router-outlet></router-outlet>
 
-<!-- Global Header Logo (Floating) -->
-<div class="global-logo interactive" (click)="toggleNav()" [class.nav-open]="isNavOpen">
-  <img loading="lazy" decoding="async" src="mi-logo.png" alt="MI Logo">
+<!-- Custom Cursor (desktop only) -->
+<div class="custom-cursor" #customCursor aria-hidden="true"></div>
+
+<!-- Global Header Logo / Menu Button -->
+<div class="global-logo interactive" (click)="toggleNav()" [class.nav-open]="isNavOpen" aria-label="Toggle navigation">
+  <img loading="eager" decoding="async" src="assets/images/mi-logo.png" alt="MI Logo">
   <div class="logo-text-flipper">
     <span class="flipper-text text-menu">MENU</span>
     <span class="flipper-text text-close">CLOSE</span>
@@ -10,28 +13,38 @@
 </div>
 
 <!-- Global Navigation Overlay -->
-<div class="nav-overlay" [class.active]="isNavOpen">
+<div class="nav-overlay" [class.active]="isNavOpen" role="dialog" aria-modal="true">
   <!-- Clickable background to close -->
   <div class="nav-bg" (click)="toggleNav()"></div>
   
   <div class="nav-content">
     
     <div class="nav-links">
+      <!-- Each nav-item has a .nav-text-clip wrapper for the slide-up animation     -->
+      <!-- This way overflow:hidden clips only the slide, not the horizontal width   -->
       <a class="nav-item interactive" (click)="scrollTo('.hero-section')">
         <span class="nav-num">01</span>
-        <h2 class="nav-text">HOME</h2>
+        <div class="nav-text-clip">
+          <h2 class="nav-text">HOME</h2>
+        </div>
       </a>
       <a class="nav-item interactive" (click)="scrollTo('.about-section')">
         <span class="nav-num">02</span>
-        <h2 class="nav-text">ABOUT</h2>
+        <div class="nav-text-clip">
+          <h2 class="nav-text">ABOUT</h2>
+        </div>
       </a>
       <a class="nav-item interactive" (click)="scrollTo('.featured-work-section')">
         <span class="nav-num">03</span>
-        <h2 class="nav-text">WORKS</h2>
+        <div class="nav-text-clip">
+          <h2 class="nav-text">WORKS</h2>
+        </div>
       </a>
       <a class="nav-item interactive" (click)="scrollTo('.footer-section')">
         <span class="nav-num">04</span>
-        <h2 class="nav-text">CONTACT</h2>
+        <div class="nav-text-clip">
+          <h2 class="nav-text">CONTACT</h2>
+        </div>
       </a>
     </div>
 
@@ -39,15 +52,9 @@
       <div class="nav-info">
         <span>Based in Chennai, India.</span>
         <span>Built on curiosity. Driven by craft.</span>
-      <!-- Socials / Theme -->
-      <div class="nav-socials interactive" style="display: flex; gap: 2rem; align-items: center;">
-        <a *ngIf="isDevMode" href="javascript:void(0)" (click)="toggleTheme()" style="color: var(--accent-color);">
-          {{ isLightMode ? 'DARK MODE' : 'LIGHT MODE' }}
-        </a>
-        <a href="https://github.com/Irfanoffici" target="_blank">GITHUB</a>
-        <a href="https://www.linkedin.com/in/mohammed-irfan-424a56262" target="_blank">LINKEDIN</a>
-        <a href="https://www.instagram.com/ir.fan_42/?igsh=eTBjY21hcmVkbHlh" target="_blank">INSTAGRAM</a>
       </div>
+      <div class="nav-socials">
+        <a href="https://github.com/Irfanoffici/" target="_blank">GO TO GITHUB ↗</a>
       </div>
     </div>
     
