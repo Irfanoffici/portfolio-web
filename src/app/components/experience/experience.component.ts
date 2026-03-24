@@ -30,29 +30,23 @@ export class ExperienceComponent implements AfterViewInit {
   constructor(private ngZone: NgZone) {}
 
   ngAfterViewInit() {
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (isTouch) return;
+
     this.ngZone.runOutsideAngular(() => {
       gsap.registerPlugin(ScrollTrigger);
-      
+
       setTimeout(() => {
-        const blocks = this.expContainer.nativeElement.querySelectorAll('.exp2-block');
-        
-        gsap.fromTo(blocks,
-          { x: -60, opacity: 0 },
+        gsap.fromTo(
+          this.expContainer.nativeElement.querySelectorAll('.exp2-block'),
+          { x: -50, opacity: 0 },
           {
-            scrollTrigger: {
-              trigger: this.expContainer.nativeElement,
-              start: 'top 85%'
-            },
-            x: 0,
-            opacity: 1,
-            duration: 1.1,
-            stagger: 0.2,
-            ease: 'power3.out'
+            scrollTrigger: { trigger: this.expContainer.nativeElement, start: 'top 85%' },
+            x: 0, opacity: 1, duration: 1, stagger: 0.18, ease: 'power3.out'
           }
         );
-
         ScrollTrigger.refresh();
-      }, 150);
+      }, 100);
     });
   }
 }

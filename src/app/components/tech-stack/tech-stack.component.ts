@@ -57,32 +57,41 @@ export class TechStackComponent implements AfterViewInit {
   constructor(private ngZone: NgZone) {}
 
   ngAfterViewInit() {
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
     this.ngZone.runOutsideAngular(() => {
       gsap.registerPlugin(ScrollTrigger);
-      
+
+      if (isTouch) {
+        // On mobile: use CSS animation class (GPU-native, no JS overhead)
+        this.marqueeWrappers.forEach((wrapper, index) => {
+          const track = wrapper.nativeElement.querySelector('.ars-marquee-track');
+          if (track) {
+            track.classList.add(index % 2 === 0 ? 'css-marquee-fwd' : 'css-marquee-rev');
+          }
+        });
+        return;
+      }
+
+      // Desktop: GSAP with alternating directions
       setTimeout(() => {
         this.marqueeWrappers.forEach((wrapper, index) => {
           const track = wrapper.nativeElement.querySelector('.ars-marquee-track');
-          
-          // Elements in marquee content
-          // Animate by shifting the track by -50% (which moves exactly the width of one list block)
-          
-          // Alternate starting positions and directions for brutalist chaos
           if (index % 2 === 0) {
-            const tween = gsap.fromTo(track, 
-              { xPercent: 0 }, 
+            const tween = gsap.fromTo(track,
+              { xPercent: 0 },
               { xPercent: -50, duration: 40, ease: 'none', repeat: -1 }
             );
             this.marquees.push(tween);
           } else {
-            const tween = gsap.fromTo(track, 
-              { xPercent: -50 }, 
+            const tween = gsap.fromTo(track,
+              { xPercent: -50 },
               { xPercent: 0, duration: 35, ease: 'none', repeat: -1 }
             );
             this.marquees.push(tween);
           }
         });
-      }, 200);
+      }, 100);
     });
   }
 

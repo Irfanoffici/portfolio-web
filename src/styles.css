@@ -271,3 +271,103 @@ img { image-rendering: auto; }
 .accent-glow {
   text-shadow: 0 0 40px rgba(255, 51, 102, 0.3);
 }
+
+/* ══════════════════════════════════
+   CSS MARQUEE KEYFRAMES
+   Used by Arsenal section on mobile
+   (GPU-native, no GSAP overhead)
+══════════════════════════════════ */
+@keyframes marquee-fwd {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-rev {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.css-marquee-fwd {
+  animation: marquee-fwd 40s linear infinite;
+  will-change: transform;
+}
+.css-marquee-rev {
+  animation: marquee-rev 35s linear infinite;
+  will-change: transform;
+}
+
+/* ══════════════════════════════════
+   GLOBAL TEXT WRAP — prevents overflow
+   on all screen widths
+══════════════════════════════════ */
+p, span, li, td, th,
+.hero-description, .svc-extended-desc,
+.svc-short-desc, .exp2-desc, .fw-desc,
+.abt-para, .edu-details-inner p,
+.nav-info span, .footer-philosophy {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/* Long headings that use white-space:nowrap must be overridden on very small screens */
+@media (max-width: 320px) {
+  h1, h2, h3, h4 { white-space: normal !important; }
+}
+
+/* ══════════════════════════════════
+   MOBILE: ENSURE GSAP-ANIMATED ELEMENTS
+   ARE VISIBLE WHEN GSAP IS SKIPPED
+   (touch devices bail out of all GSAP)
+══════════════════════════════════ */
+@media (hover: none) {
+  /* These start at opacity:0 set by GSAP — show them immediately on touch */
+  .exp2-block,
+  .fw-monolithic-item,
+  .svc-item,
+  .mani-line,
+  .reveal-text,
+  .footer-reveal,
+  .hero-pre-title,
+  .hero-description,
+  .scroll-indicator {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* Reveal-text color: always full color, no scroll-scrub needed */
+  .reveal-text { color: var(--text-color) !important; }
+}
+
+/* ══════════════════════════════════
+   PREFERS REDUCED MOTION — accessibility
+══════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .css-marquee-fwd, .css-marquee-rev { animation: none; }
+}
+
+/* ══════════════════════════════════
+   SMARTWATCH — ≤240px
+══════════════════════════════════ */
+@media (max-width: 240px) {
+  .container { padding-left: 3vw; padding-right: 3vw; }
+  h1, h2, h3 { font-size: clamp(1rem, 10vw, 2rem) !important; white-space: normal; }
+  .hero-title { font-size: clamp(1rem, 14vw, 2rem) !important; }
+  section { padding: 4vh 0 !important; }
+}
+
+/* ══════════════════════════════════
+   4K TV — 3840px+
+══════════════════════════════════ */
+@media (min-width: 3840px) {
+  :root {
+    --container-pad: 8vw;
+    --section-gap: 20vh;
+  }
+  .container { max-width: 3200px; }
+  body { font-size: 20px; }
+}
+

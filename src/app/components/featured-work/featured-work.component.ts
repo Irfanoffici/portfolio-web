@@ -32,24 +32,18 @@ export class FeaturedWorkComponent implements AfterViewInit {
   constructor(private ngZone: NgZone) {}
 
   ngAfterViewInit() {
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (isTouch) return;
+
     this.ngZone.runOutsideAngular(() => {
       gsap.registerPlugin(ScrollTrigger);
 
-      const items = this.fwContainer.nativeElement.querySelectorAll('.fw-monolithic-item');
-      
-      gsap.fromTo(items, 
-        { scale: 0.98, opacity: 0, y: 70 },
+      gsap.fromTo(
+        this.fwContainer.nativeElement.querySelectorAll('.fw-monolithic-item'),
+        { opacity: 0, y: 50 },
         {
-          scrollTrigger: {
-            trigger: this.fwContainer.nativeElement,
-            start: 'top 85%',
-          },
-          scale: 1,
-          opacity: 1,
-          y: 0,
-          duration: 1,
-          stagger: 0.3,
-          ease: 'power4.out'
+          scrollTrigger: { trigger: this.fwContainer.nativeElement, start: 'top 85%' },
+          opacity: 1, y: 0, duration: 0.9, stagger: 0.2, ease: 'power3.out'
         }
       );
     });
