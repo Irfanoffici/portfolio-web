@@ -206,8 +206,7 @@
 }
 
 :host-context(body.light-theme) .floating-portrait {
-  filter: grayscale(100%) opacity(0.1) contrast(1.2);
-  mix-blend-mode: multiply;
+  display: none;
 }
 
 .tech-badge-img {

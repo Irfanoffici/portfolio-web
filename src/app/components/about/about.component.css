@@ -174,13 +174,26 @@
   transform: scale(1.04);
 }
 
-:host-context(body.light-theme) .subtle-portrait {
-  filter: grayscale(100%) brightness(1.1) contrast(0.85) opacity(0.15);
-  mix-blend-mode: multiply;
+/* Base Light Portrait Setup (Hidden in Dark Mode) */
+.light-portrait {
+  display: none;
 }
 
-:host-context(body.light-theme) .about-philosophy-grid:hover .subtle-portrait {
-  filter: grayscale(60%) brightness(1) contrast(0.9) opacity(0.35);
+/* Light Theme Overrides */
+:host-context(body.light-theme) .dark-portrait {
+  display: none !important;
+}
+
+:host-context(body.light-theme) .light-portrait {
+  display: block;
+  filter: grayscale(30%) contrast(1.1) opacity(0.95);
+  mix-blend-mode: normal;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+:host-context(body.light-theme) .about-philosophy-grid:hover .light-portrait {
+  filter: grayscale(0%) contrast(1.15) opacity(1);
 }
 
 .image-overlay {
