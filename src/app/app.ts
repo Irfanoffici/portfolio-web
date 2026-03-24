@@ -31,12 +31,12 @@ export class App implements OnInit, OnDestroy {
   initLenis() {
     this.ngZone.runOutsideAngular(() => {
       this.lenis = new Lenis({
-        lerp: 0.07,           // Honey-smooth
+        lerp: 0.08,
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 0.85, 
-        touchMultiplier: 2,
+        wheelMultiplier: 1, 
+        touchMultiplier: 1.2,
       });
 
       this.lenis.on('scroll', ScrollTrigger.update);
