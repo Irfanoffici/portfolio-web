@@ -41,7 +41,7 @@
         <span>Built on curiosity. Driven by craft.</span>
       <!-- Socials / Theme -->
       <div class="nav-socials interactive" style="display: flex; gap: 2rem; align-items: center;">
-        <a href="javascript:void(0)" (click)="toggleTheme()" style="color: var(--accent-color);">
+        <a *ngIf="isDevMode" href="javascript:void(0)" (click)="toggleTheme()" style="color: var(--accent-color);">
           {{ isLightMode ? 'DARK MODE' : 'LIGHT MODE' }}
         </a>
         <a href="https://github.com/Irfanoffici" target="_blank">GITHUB</a>

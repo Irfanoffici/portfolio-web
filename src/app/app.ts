@@ -1,4 +1,4 @@
-import { Component, signal, OnInit, OnDestroy } from '@angular/core';
+import { Component, signal, OnInit, OnDestroy, isDevMode } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import Lenis from '@studio-freight/lenis';
@@ -20,6 +20,7 @@ export class App implements OnInit, OnDestroy {
   lenis!: Lenis;
   isNavOpen = false;
   isLightMode = false;
+  isDevMode = isDevMode();
 
   ngOnInit() {
     this.initLenis();
