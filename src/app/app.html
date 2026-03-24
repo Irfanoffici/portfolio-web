@@ -3,6 +3,14 @@
 <!-- Custom Cursor (desktop only) -->
 <div class="custom-cursor" #customCursor aria-hidden="true"></div>
 
+<!-- Global Tooltip (for Arsenal section etc) -->
+<div class="ars-tooltip-global" #globalTooltip [hidden]="!tooltipService.hoveredTool()">
+  <div class="ars-tt-inner" *ngIf="tooltipService.hoveredTool() as tool">
+    <h4>{{ tool.name }}</h4>
+    <p>{{ tool.extendedDesc }}</p>
+  </div>
+</div>
+
 <!-- Global Header Logo / Menu Button -->
 <div class="global-logo interactive" (click)="toggleNav()" [class.nav-open]="isNavOpen" aria-label="Toggle navigation">
   <img loading="eager" decoding="async" src="/assets/images/mi-logo.png" alt="MI Logo">

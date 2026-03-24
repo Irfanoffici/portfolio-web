@@ -21,6 +21,39 @@
   mix-blend-mode: normal;
 }
 
+/* ── Global Tooltip ── */
+.ars-tooltip-global {
+  position: fixed;
+  top: 0; left: 0;
+  pointer-events: none;
+  z-index: 11000;
+  background-color: #0c0c0c;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 1.5rem 2rem;
+  max-width: 380px;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+  will-change: transform;
+  display: block; /* ensure [hidden] works correctly */
+}
+
+.ars-tt-inner h4 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.25rem;
+  margin-bottom: .8rem;
+  color: var(--accent-color);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+}
+
+.ars-tt-inner p {
+  font-family: 'Inter', sans-serif;
+  font-size: .95rem;
+  line-height: 1.6;
+  color: #a0a0a0;
+  margin: 0;
+}
+
 /* ═══════════════════════════
    FLOATING LOGO / MENU BUTTON
 ═══════════════════════════ */

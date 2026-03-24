@@ -128,48 +128,7 @@
 }
 
 
-/* Tooltip custom cursor */
-.ars-tooltip {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: none; /* Handled by GSAP for zero latency */
-  background-color: var(--bg-darker);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 2rem;
-  max-width: 400px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.9);
-  white-space: normal;
-}
-body.light-theme .ars-tooltip {
-  background-color: var(--bg-lighter);
-  border-color: rgba(0,0,0,0.1);
-  box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-}
-
-/* Visibility handled by GSAP */
-
-.ars-tt-inner h4 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--accent-color);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-}
-
-.ars-tt-inner p {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text-color);
-  margin: 0;
-}
+/* Tooltip moved to global app.css for root stacking context */
 
 /* ━━━━━ RESPONSIVE: 1280px (small laptop / large tablet) ━━━━━ */
 @media (max-width: 1280px) {

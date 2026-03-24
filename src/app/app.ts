@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { TooltipService } from './services/tooltip.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,8 +23,12 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   isDevMode = isDevMode();
 
   @ViewChild('customCursor') customCursor!: ElementRef;
+  @ViewChild('globalTooltip') globalTooltip?: ElementRef;
 
-  constructor(private ngZone: NgZone) {}
+  constructor(
+    private ngZone: NgZone,
+    public tooltipService: TooltipService
+  ) {}
 
   ngOnInit() {
     this.initLenis();
@@ -38,17 +43,26 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     if (isTouch) return;
 
     this.ngZone.runOutsideAngular(() => {
-      // Keep state in local vars to minimize lookups
       const cursor = this.customCursor.nativeElement;
       
-      // Move cursor
       window.addEventListener('mousemove', (e) => {
+        // Move cursor
         gsap.to(cursor, {
           x: e.clientX,
           y: e.clientY,
           duration: 0.1,
           ease: 'power2.out'
         });
+
+        // Move global tooltip if it exists and is active
+        if (this.globalTooltip) {
+          gsap.to(this.globalTooltip.nativeElement, {
+            x: e.clientX + 10,
+            y: e.clientY + 10,
+            duration: 0.1,
+            ease: 'power2.out'
+          });
+        }
       });
 
       // Hover effects

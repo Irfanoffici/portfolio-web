@@ -1,7 +1,8 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, NgZone } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChildren, QueryList, NgZone } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CommonModule } from '@angular/common';
+import { TooltipService } from '../../services/tooltip.service';
 
 @Component({
   selector: 'app-tech-stack',
@@ -12,7 +13,6 @@ import { CommonModule } from '@angular/common';
 })
 export class TechStackComponent implements AfterViewInit {
   @ViewChildren('marqueeWrapper') marqueeWrappers!: QueryList<ElementRef>;
-  @ViewChild('tooltipElement') tooltipElement!: ElementRef;
 
   techCategories = [
     {
@@ -54,7 +54,10 @@ export class TechStackComponent implements AfterViewInit {
   hoveredTool: any = null;
   marquees: gsap.core.Tween[] = [];
 
-  constructor(private ngZone: NgZone) {}
+  constructor(
+    private ngZone: NgZone,
+    private tooltipService: TooltipService
+  ) {}
 
   ngAfterViewInit() {
     const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
@@ -63,7 +66,6 @@ export class TechStackComponent implements AfterViewInit {
       gsap.registerPlugin(ScrollTrigger);
 
       if (isTouch) {
-        // On mobile: use CSS animation class (GPU-native, no JS overhead)
         this.marqueeWrappers.forEach((wrapper, index) => {
           const track = wrapper.nativeElement.querySelector('.ars-marquee-track');
           if (track) {
@@ -73,7 +75,6 @@ export class TechStackComponent implements AfterViewInit {
         return;
       }
 
-      // Desktop: GSAP with alternating directions
       setTimeout(() => {
         this.marqueeWrappers.forEach((wrapper, index) => {
           const track = wrapper.nativeElement.querySelector('.ars-marquee-track');
@@ -95,44 +96,17 @@ export class TechStackComponent implements AfterViewInit {
     });
   }
 
-  private xSetter!: Function;
-  private ySetter!: Function;
-
   onHoverTool(tool: any, event: MouseEvent) {
     this.hoveredTool = tool;
     this.marquees.forEach(m => m.pause());
-    
-    // Create quick setters for performance
-    this.xSetter = gsap.quickSetter(this.tooltipElement.nativeElement, "x", "px");
-    this.ySetter = gsap.quickSetter(this.tooltipElement.nativeElement, "y", "px");
-
-    // Start instantly at exact pointer
-    this.xSetter(event.clientX + 15);
-    this.ySetter(event.clientY + 15);
-
-    // Fade in
-    gsap.fromTo(this.tooltipElement.nativeElement, 
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.2, ease: 'power2.out' }
-    );
+    this.tooltipService.show(tool);
   }
 
-  onMoveTool(event: MouseEvent) {
-    if (!this.hoveredTool || !this.xSetter) return;
-    // Perfect sync with mouse
-    this.xSetter(event.clientX + 15);
-    this.ySetter(event.clientY + 15);
-  }
+  onMoveTool(event: MouseEvent) {}
 
   onLeaveTool() {
     this.hoveredTool = null;
     this.marquees.forEach(m => m.play());
-
-    gsap.to(this.tooltipElement.nativeElement, {
-      opacity: 0,
-      scale: 0.8,
-      duration: 0.2,
-      ease: 'power2.in'
-    });
+    this.tooltipService.hide();
   }
 }
