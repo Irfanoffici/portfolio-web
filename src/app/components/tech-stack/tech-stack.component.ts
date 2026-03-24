@@ -93,6 +93,15 @@ export class TechStackComponent implements AfterViewInit {
           }
         });
       }, 100);
+
+      // Scroll guard: if we scroll away from arsenal, kill any active tooltip
+      ScrollTrigger.create({
+        trigger: ".arsenal-section",
+        start: "top bottom",
+        end: "bottom top",
+        onLeave: () => this.tooltipService.hide(),
+        onLeaveBack: () => this.tooltipService.hide()
+      });
     });
   }
 
