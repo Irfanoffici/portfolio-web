@@ -13,6 +13,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 export class Ecosystem implements AfterViewInit {
   @ViewChildren('toolNode') toolNodes!: QueryList<ElementRef>;
 
+  activeTool: any = null;
+
   toolCategories = [
     {
       name: 'STRATEGY & IDEATION',
@@ -132,5 +134,13 @@ export class Ecosystem implements AfterViewInit {
         });
       });
     });
+  }
+
+  toggleTool(tool: any) {
+    if (this.activeTool === tool) {
+      this.activeTool = null;
+    } else {
+      this.activeTool = tool;
+    }
   }
 }

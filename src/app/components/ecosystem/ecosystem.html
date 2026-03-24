@@ -11,6 +11,8 @@
            class="tool-node"
            #toolNode
            [class]="'size-' + tool.size"
+           [class.active]="activeTool === tool"
+           (click)="toggleTool(tool)"
            [style.left.%]="tool.x"
            [style.top.%]="tool.y"
            [attr.data-depth]="tool.size === 'xlarge' ? 2 : tool.size === 'large' ? 1.5 : tool.size === 'medium' ? 1 : 0.8">

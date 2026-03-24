@@ -13,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class ServicesComponent implements AfterViewInit {
   @ViewChild('servicesList') servicesList!: ElementRef;
 
+  activeServiceIndex: number | null = null;
+
   services = [
     {
       name: 'Custom Software Architecture',
@@ -61,5 +63,13 @@ export class ServicesComponent implements AfterViewInit {
         ScrollTrigger.refresh();
       }, 100);
     });
+  }
+
+  toggleService(index: number) {
+    if (this.activeServiceIndex === index) {
+      this.activeServiceIndex = null;
+    } else {
+      this.activeServiceIndex = index;
+    }
   }
 }

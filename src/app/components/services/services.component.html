@@ -9,7 +9,9 @@
     <!-- Right accordion list -->
     <div class="svc-accordion-list" #servicesList>
       @for (s of services; track s.name; let i = $index) {
-        <div class="svc-item interactive">
+        <div class="svc-item interactive" 
+             [class.active]="activeServiceIndex === i"
+             (click)="toggleService(i)">
           
           <div class="svc-item-header">
             <span class="svc-number text-muted">0{{ i + 1 }}</span>
