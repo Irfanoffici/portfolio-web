@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { TooltipService } from './services/tooltip.service';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,39 +21,14 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   isNavOpen = false;
   isDevMode = isDevMode();
 
-  @ViewChild('globalTooltip') globalTooltip?: ElementRef;
-
-  constructor(
-    private ngZone: NgZone,
-    public tooltipService: TooltipService
-  ) {}
+  constructor(private ngZone: NgZone) {}
 
   ngOnInit() {
     this.initLenis();
   }
 
-  ngAfterViewInit() {
-    this.initGlobalTracking();
-  }
+  ngAfterViewInit() {}
 
-  initGlobalTracking() {
-    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-    if (isTouch) return;
-
-    this.ngZone.runOutsideAngular(() => {
-      window.addEventListener('mousemove', (e) => {
-        // Move global tooltip if it exists and is active
-        if (this.globalTooltip) {
-          gsap.to(this.globalTooltip.nativeElement, {
-            x: e.clientX + 10,
-            y: e.clientY + 10,
-            duration: 0.1,
-            ease: 'power2.out'
-          });
-        }
-      });
-    });
-  }
 
   initLenis() {
     const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);

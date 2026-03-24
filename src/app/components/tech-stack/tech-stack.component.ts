@@ -2,7 +2,6 @@ import { Component, AfterViewInit, ElementRef, ViewChildren, QueryList, NgZone }
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CommonModule } from '@angular/common';
-import { TooltipService } from '../../services/tooltip.service';
 
 @Component({
   selector: 'app-tech-stack',
@@ -54,10 +53,7 @@ export class TechStackComponent implements AfterViewInit {
   hoveredTool: any = null;
   marquees: gsap.core.Tween[] = [];
 
-  constructor(
-    private ngZone: NgZone,
-    private tooltipService: TooltipService
-  ) {}
+  constructor(private ngZone: NgZone) {}
 
   ngAfterViewInit() {
     const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
@@ -99,7 +95,6 @@ export class TechStackComponent implements AfterViewInit {
   onHoverTool(tool: any, event: MouseEvent) {
     this.hoveredTool = tool;
     this.marquees.forEach(m => m.pause());
-    this.tooltipService.show(tool);
   }
 
   onMoveTool(event: MouseEvent) {}
@@ -107,6 +102,5 @@ export class TechStackComponent implements AfterViewInit {
   onLeaveTool() {
     this.hoveredTool = null;
     this.marquees.forEach(m => m.play());
-    this.tooltipService.hide();
   }
 }
