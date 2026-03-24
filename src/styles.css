@@ -76,6 +76,7 @@ section {
   isolation: isolate;
   content-visibility: auto;
   contain-intrinsic-size: 0 600px;
+  overflow-x: hidden; /* prevent any section from causing horizontal scroll */
 }
 
 /* ── Interactive element base ── */
@@ -131,6 +132,79 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-padding { padding: var(--section-gap) 0; }
 .relative        { position: relative; }
+
+/* ══════════════════════════════════
+   RESPONSIVE TOKEN OVERRIDES
+   Breakpoints: 320 / 480 / 768 / 1024 / 1280
+               1920 / 2560 / 3840 (ultra-wide)
+══════════════════════════════════ */
+
+/* ─ Tablet portrait + small laptop (1024px, 1280px, 1366px range) ─ */
+@media (max-width: 1280px) {
+  :root {
+    --section-gap: 11vh;
+    --container-pad: 6vw;
+  }
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --section-gap: 10vh;
+    --container-pad: 6vw;
+  }
+  .container { max-width: 100%; }
+}
+
+/* ─ Large phones landscape + small tablets (768px, 800px range) ─ */
+@media (max-width: 768px) {
+  :root {
+    --section-gap: 8vh;
+    --container-pad: 5vw;
+  }
+  h1, h2, h3 { letter-spacing: -0.03em; }
+}
+
+/* ─ Phones (375–414px, 412px range) ─ */
+@media (max-width: 480px) {
+  :root {
+    --section-gap: 6vh;
+    --container-pad: 5vw;
+  }
+}
+
+/* ─ Tiny phones (320px–360px) ─ */
+@media (max-width: 375px) {
+  :root {
+    --section-gap: 5vh;
+    --container-pad: 4.5vw;
+  }
+}
+
+/* ─ Ultra-wide: 1920px+ ─ */
+@media (min-width: 1920px) {
+  :root {
+    --section-gap: 16vh;
+    --container-pad: 4vw;
+  }
+  .container { max-width: 1680px; }
+}
+
+/* ─ 2K / 2560px+ ─ */
+@media (min-width: 2560px) {
+  :root {
+    --section-gap: 18vh;
+    --container-pad: 3vw;
+  }
+  .container { max-width: 2200px; }
+}
+
+/* ─ 4K / 3840px+ ─ */
+@media (min-width: 3840px) {
+  :root {
+    --container-pad: 2.5vw;
+  }
+  .container { max-width: 3000px; }
+}
 
 /* ══════════════════════════════════
    UTILITIES

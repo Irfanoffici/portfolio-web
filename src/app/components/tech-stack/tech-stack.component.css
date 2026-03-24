@@ -83,7 +83,7 @@ body.light-theme .arsenal-cat-row:first-child { border-top-color: rgba(0,0,0,0.2
 .ars-marquee-wrapper {
   overflow: hidden;
   white-space: nowrap;
-  width: 100vw;
+  width: 100%; /* was 100vw — caused horizontal overflow on mobile */
   display: flex;
 }
 
@@ -178,25 +178,27 @@ body.light-theme .ars-tooltip {
   margin: 0;
 }
 
-/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+/* ━━━━━ RESPONSIVE: 1280px (small laptop / large tablet) ━━━━━ */
+@media (max-width: 1280px) {
+  .arsenal-header { padding: 0 4vw; }
+  .arsenal-cat-meta { padding: 0 4vw; }
+}
+
+/* ━━━━━ RESPONSIVE: 1024px (tablet landscape, iPad) ━━━━━ */
+@media (max-width: 1024px) {
+  .arsenal-title { font-size: clamp(3.5rem, 12vw, 10rem); }
+  .ars-tool-name { font-size: clamp(3rem, 7vw, 7rem); }
+  .ars-separator { font-size: clamp(3rem, 7vw, 7rem); padding: 0 2rem; }
+}
+
+/* ━━━━━ RESPONSIVE: 768px (large phones, tablet portrait) ━━━━━ */
 @media (max-width: 768px) {
-  .arsenal-header { margin-bottom: 4rem; }
-
-  .arsenal-title {
-    font-size: clamp(3rem, 18vw, 7rem);
-  }
-
-  .ars-tool-name {
-    font-size: clamp(2.5rem, 10vw, 5rem);
-  }
-
-  .ars-separator {
-    font-size: clamp(2.5rem, 10vw, 5rem);
-    padding: 0 1.5rem;
-  }
-
+  .arsenal-header { padding: 0 5vw; margin-bottom: 4rem; }
+  .arsenal-cat-meta { padding: 0 5vw; margin-bottom: 2rem; }
+  .arsenal-title { font-size: clamp(3rem, 16vw, 6rem); }
+  .ars-tool-name { font-size: clamp(2.5rem, 9vw, 5rem); }
+  .ars-separator { font-size: clamp(2.5rem, 9vw, 5rem); padding: 0 1.5rem; }
   .arsenal-cat-row { padding: 2.5rem 0; }
-
   .ars-tooltip {
     position: fixed;
     top: auto !important;
@@ -206,4 +208,18 @@ body.light-theme .ars-tooltip {
     max-width: none;
     transform: none !important;
   }
+}
+
+/* ━━━━━ RESPONSIVE: 480px (standard phones) ━━━━━ */
+@media (max-width: 480px) {
+  .arsenal-title { font-size: clamp(2.5rem, 18vw, 5rem); }
+  .ars-tool-name { font-size: clamp(2rem, 11vw, 4rem); }
+  .ars-separator { font-size: clamp(2rem, 11vw, 4rem); padding: 0 1rem; }
+}
+
+/* ━━━━━ RESPONSIVE: 375px (tiny phones) ━━━━━ */
+@media (max-width: 375px) {
+  .arsenal-title { font-size: clamp(2rem, 18vw, 4rem); }
+  .ars-tool-name { font-size: clamp(1.8rem, 12vw, 3.5rem); }
+  .ars-separator { font-size: clamp(1.8rem, 12vw, 3.5rem); }
 }

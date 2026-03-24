@@ -17,7 +17,7 @@ body.light-theme .abt-section {
   z-index: 2;
 }
 
-/* Background ME */
+/* Ghost backdrop */
 .abt-ghost-bg {
   position: absolute;
   top: -5%;
@@ -26,7 +26,6 @@ body.light-theme .abt-section {
   pointer-events: none;
   overflow: hidden;
 }
-
 .abt-hollow-huge {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(20rem, 40vw, 40rem);
@@ -35,9 +34,7 @@ body.light-theme .abt-section {
   color: transparent;
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.03);
 }
-body.light-theme .abt-hollow-huge {
-  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.03);
-}
+body.light-theme .abt-hollow-huge { -webkit-text-stroke: 1px rgba(0, 0, 0, 0.03); }
 
 /* Top Meta */
 .abt-top-meta {
@@ -61,7 +58,6 @@ body.light-theme .abt-top-meta { border-bottom-color: rgba(0,0,0,0.1); }
   gap: 0.15em;
   margin-bottom: 12vh;
 }
-
 .mani-line {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(3.2rem, 7.5vw, 8.5rem);
@@ -75,17 +71,12 @@ body.light-theme .abt-top-meta { border-bottom-color: rgba(0,0,0,0.1); }
 .mani-indent-1 { padding-left: 8vw; }
 .mani-indent-2 { padding-left: 22vw; }
 .mani-indent-3 { padding-left: 3vw; }
-
 .mani-hollow {
   color: transparent;
   -webkit-text-stroke: 1.5px rgba(255,255,255,0.22);
 }
 body.light-theme .mani-hollow { -webkit-text-stroke: 1.5px rgba(0,0,0,0.22); }
-
-.mani-solid {
-  color: var(--text-color);
-}
-
+.mani-solid { color: var(--text-color); }
 .mani-italic {
   font-family: 'Outfit', sans-serif;
   font-style: italic;
@@ -109,10 +100,7 @@ body.light-theme .mani-hollow { -webkit-text-stroke: 1.5px rgba(0,0,0,0.22); }
 body.light-theme .abt-philosophy-grid { border-color: rgba(0,0,0,0.15); }
 
 @media (min-width: 1024px) {
-  .abt-philosophy-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 8rem;
-  }
+  .abt-philosophy-grid { grid-template-columns: 1fr 1fr; gap: 8rem; }
 }
 
 .abt-text-col {
@@ -126,21 +114,16 @@ body.light-theme .abt-philosophy-grid { border-color: rgba(0,0,0,0.15); }
   font-family: 'Inter', sans-serif;
   font-size: clamp(1.1rem, 1.5vw, 1.3rem);
   line-height: 1.8;
-  color: rgba(255, 255, 255, 0.4); /* initial color for GSAP scrub */
+  color: rgba(255, 255, 255, 0.4);
 }
-body.light-theme .abt-para {
-  color: rgba(0, 0, 0, 0.4);
-}
+body.light-theme .abt-para { color: rgba(0, 0, 0, 0.4); }
 
 .abt-focus-box {
   border-left: 2px solid var(--accent-color);
   padding-left: 2rem;
   margin-top: 2rem;
 }
-.abt-focus-box .abt-para {
-  margin-bottom: 3rem;
-  color: var(--text-muted); /* Not GSAP scrubbed */
-}
+.abt-focus-box .abt-para { margin-bottom: 3rem; color: var(--text-muted); }
 
 .abt-cta-btn {
   display: inline-flex;
@@ -157,19 +140,10 @@ body.light-theme .abt-para {
   transition: all var(--dur-fast) var(--ease-out);
 }
 body.light-theme .abt-cta-btn { border-color: rgba(0,0,0,0.2); }
-
-.abt-cta-btn:hover {
-  background-color: var(--text-color);
-  color: var(--bg-color);
-}
+.abt-cta-btn:hover { background-color: var(--text-color); color: var(--bg-color); }
 body.light-theme .abt-cta-btn:hover { background-color: var(--text-color); color: var(--bg-lighter); }
-
-.abt-cta-arrow {
-  transition: transform var(--dur-fast) var(--ease-out);
-}
-.abt-cta-btn:hover .abt-cta-arrow {
-  transform: translate(5px, -5px);
-}
+.abt-cta-arrow { transition: transform var(--dur-fast) var(--ease-out); }
+.abt-cta-btn:hover .abt-cta-arrow { transform: translate(5px, -5px); }
 
 .abt-image-col {
   position: relative;
@@ -177,7 +151,6 @@ body.light-theme .abt-cta-btn:hover { background-color: var(--text-color); color
   justify-content: center;
   align-items: center;
 }
-
 .abt-image-wrapper {
   position: relative;
   width: 100%;
@@ -186,7 +159,6 @@ body.light-theme .abt-cta-btn:hover { background-color: var(--text-color); color
   isolation: isolate;
   background: radial-gradient(circle at center, rgba(255,51,102,0.1), transparent 70%);
 }
-
 .abt-portrait {
   width: 100%;
   height: auto;
@@ -195,18 +167,13 @@ body.light-theme .abt-cta-btn:hover { background-color: var(--text-color); color
   transition: filter var(--dur-med) var(--ease-out);
   will-change: transform;
 }
-.abt-image-wrapper:hover .abt-portrait {
-  filter: grayscale(0%) brightness(1) contrast(1.05);
-}
+.abt-image-wrapper:hover .abt-portrait { filter: grayscale(0%) brightness(1) contrast(1.05); }
 
 /* Stats Matrix */
 .abt-stats-matrix {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   border: 1px solid rgba(255,255,255,0.1);
-}
-@media (min-width: 640px) {
-  .abt-stats-matrix { grid-template-columns: 1fr 1fr; }
 }
 @media (min-width: 1024px) {
   .abt-stats-matrix { grid-template-columns: 1fr 1fr 1fr 1fr; }
@@ -225,13 +192,8 @@ body.light-theme .abt-stats-matrix { border-color: rgba(0,0,0,0.1); }
   transition: background-color var(--dur-fast) var(--ease-out);
 }
 body.light-theme .abt-stat-box { border-color: rgba(0,0,0,0.05); }
-
-.abt-stat-box:hover {
-  background-color: rgba(255,255,255,0.02);
-}
-body.light-theme .abt-stat-box:hover {
-  background-color: rgba(0,0,0,0.02);
-}
+.abt-stat-box:hover { background-color: rgba(255,255,255,0.02); }
+body.light-theme .abt-stat-box:hover { background-color: rgba(0,0,0,0.02); }
 
 .abt-stat-huge {
   font-family: 'Outfit', sans-serif;
@@ -241,7 +203,6 @@ body.light-theme .abt-stat-box:hover {
   line-height: 1;
   margin-bottom: 1rem;
 }
-
 .abt-stat-sub {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
@@ -249,40 +210,59 @@ body.light-theme .abt-stat-box:hover {
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
-/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 1280px
+══════════════════════════════════════════════════════ */
+@media (max-width: 1280px) {
+  .mani-indent-2 { padding-left: 18vw; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 1024px (iPad, tablets)
+══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .mani-line { font-size: clamp(3rem, 7vw, 7rem); }
+  .abt-philosophy-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .abt-stats-matrix { grid-template-columns: 1fr 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 768px (large phones, tablet portrait)
+══════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .mani-line {
-    font-size: clamp(2.2rem, 10vw, 4rem);
-  }
-  /* Remove aggressive indents on mobile */
+  .mani-line { font-size: clamp(2.5rem, 10vw, 5rem); }
+  .mani-indent-1 { padding-left: 5vw; }
+  .mani-indent-2 { padding-left: 10vw; }
+  .mani-indent-3 { padding-left: 2vw; }
+  .abt-manifesto { margin-bottom: 8vh; }
+  .abt-top-meta { margin-bottom: 3rem; }
+  .abt-image-col { display: none; }
+  .abt-philosophy-grid { gap: 2rem; padding: 3rem 0; margin-bottom: 3rem; }
+  .abt-stat-box { padding: 3rem 1rem; }
+  .abt-stat-huge { font-size: clamp(2rem, 8vw, 3.5rem); }
+  .abt-focus-box { padding-left: 1.2rem; }
+  .abt-text-col { gap: 2rem; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 480px
+══════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .mani-line { font-size: clamp(2rem, 12vw, 4rem); }
   .mani-indent-1 { padding-left: 4vw; }
   .mani-indent-2 { padding-left: 8vw; }
-  .mani-indent-3 { padding-left: 2vw; }
+  .mani-indent-3 { padding-left: 0; }
+  .abt-top-meta { font-size: 0.8rem; letter-spacing: 0.08em; }
+  .abt-stat-sub { font-size: 0.7rem; letter-spacing: 0.08em; }
+  .abt-cta-btn { font-size: 0.9rem; padding: 0.9rem 1.5rem; }
+}
 
-  .abt-manifesto { margin-bottom: 8vh; }
-
-  .abt-image-col {
-    display: none; /* hide portrait on small screens for cleaner layout */
-  }
-
-  .abt-philosophy-grid {
-    gap: 2.5rem;
-    padding: 3rem 0;
-  }
-
-  .abt-stats-matrix {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .abt-stat-box {
-    padding: 3rem 1rem;
-  }
-
-  .abt-stat-huge {
-    font-size: clamp(2rem, 8vw, 3rem);
-  }
-
-  .abt-focus-box {
-    padding-left: 1.2rem;
-  }
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 375px (tiny phones)
+══════════════════════════════════════════════════════ */
+@media (max-width: 375px) {
+  .mani-line { font-size: clamp(1.7rem, 13vw, 3rem); }
+  .abt-stat-huge { font-size: clamp(1.8rem, 10vw, 2.8rem); }
+  .abt-stat-box { padding: 2rem 0.8rem; }
 }

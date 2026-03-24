@@ -12,7 +12,6 @@ body.light-theme .exp2-section {
   border-top-color: rgba(0,0,0,0.06);
 }
 
-/* Header bar */
 .exp2-header-bar {
   display: flex;
   justify-content: space-between;
@@ -30,7 +29,6 @@ body.light-theme .exp2-header-bar { border-bottom-color: rgba(0,0,0,0.08); }
   letter-spacing: 0.2em;
   color: var(--accent-color);
 }
-
 .exp2-header-count {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
@@ -38,13 +36,8 @@ body.light-theme .exp2-header-bar { border-bottom-color: rgba(0,0,0,0.08); }
   letter-spacing: 0.15em;
 }
 
-/* List */
-.exp2-list {
-  display: flex;
-  flex-direction: column;
-}
+.exp2-list { display: flex; flex-direction: column; }
 
-/* Each block */
 .exp2-block {
   position: relative;
   display: flex;
@@ -54,23 +47,11 @@ body.light-theme .exp2-header-bar { border-bottom-color: rgba(0,0,0,0.08); }
   transition: background-color var(--dur-fast) var(--ease-out);
 }
 body.light-theme .exp2-block { border-bottom-color: rgba(0,0,0,0.07); }
+.exp2-block:hover { background-color: rgba(255,255,255,0.015); }
+body.light-theme .exp2-block:hover { background-color: rgba(0,0,0,0.015); }
+.exp2-block--alt { background-color: rgba(255,255,255,0.01); }
+body.light-theme .exp2-block--alt { background-color: rgba(0,0,0,0.01); }
 
-.exp2-block:hover {
-  background-color: rgba(255,255,255,0.015);
-}
-body.light-theme .exp2-block:hover {
-  background-color: rgba(0,0,0,0.015);
-}
-
-/* Alt block — slight tint */
-.exp2-block--alt {
-  background-color: rgba(255,255,255,0.01);
-}
-body.light-theme .exp2-block--alt {
-  background-color: rgba(0,0,0,0.01);
-}
-
-/* Giant number in the left gutter */
 .exp2-num-col {
   flex: 0 0 auto;
   width: clamp(6rem, 12vw, 14rem);
@@ -93,13 +74,11 @@ body.light-theme .exp2-num-col { border-right-color: rgba(0,0,0,0.06); }
   transition: all var(--dur-med) var(--ease-out);
 }
 body.light-theme .exp2-ghost-num { -webkit-text-stroke: 1px rgba(0,0,0,0.1); }
-
 .exp2-block:hover .exp2-ghost-num {
   color: var(--accent-color);
   -webkit-text-stroke: 1px var(--accent-color);
 }
 
-/* Content column */
 .exp2-content-col {
   flex: 1;
   padding: 4rem 4rem 4rem 5vw;
@@ -108,14 +87,12 @@ body.light-theme .exp2-ghost-num { -webkit-text-stroke: 1px rgba(0,0,0,0.1); }
   justify-content: center;
 }
 
-/* Top date strip */
 .exp2-top-strip {
   display: flex;
   align-items: center;
   gap: 2rem;
   margin-bottom: 2rem;
 }
-
 .exp2-date {
   font-family: 'Inter', sans-serif;
   font-size: 0.85rem;
@@ -124,17 +101,13 @@ body.light-theme .exp2-ghost-num { -webkit-text-stroke: 1px rgba(0,0,0,0.1); }
   color: var(--text-muted);
   flex-shrink: 0;
 }
-
 .exp2-strip-line {
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, rgba(255,255,255,0.12), transparent);
 }
-body.light-theme .exp2-strip-line {
-  background: linear-gradient(90deg, rgba(0,0,0,0.12), transparent);
-}
+body.light-theme .exp2-strip-line { background: linear-gradient(90deg, rgba(0,0,0,0.12), transparent); }
 
-/* Role title */
 .exp2-role {
   font-family: 'Outfit', sans-serif;
   font-size: clamp(2.2rem, 4vw, 5rem);
@@ -144,16 +117,9 @@ body.light-theme .exp2-strip-line {
   margin: 0 0 1.5rem;
   transition: color var(--dur-fast) var(--ease-out);
 }
-.exp2-block:hover .exp2-role {
-  color: var(--accent-color);
-}
+.exp2-block:hover .exp2-role { color: var(--accent-color); }
 
-/* Company tag */
-.exp2-company-row {
-  display: flex;
-  margin-bottom: 2.5rem;
-}
-
+.exp2-company-row { display: flex; margin-bottom: 2.5rem; }
 .exp2-company-tag {
   font-family: 'Inter', sans-serif;
   font-size: 0.9rem;
@@ -166,14 +132,12 @@ body.light-theme .exp2-strip-line {
   transition: all var(--dur-fast) var(--ease-out);
 }
 body.light-theme .exp2-company-tag { border-color: rgba(0,0,0,0.18); }
-
 .exp2-block:hover .exp2-company-tag {
   background-color: var(--accent-color);
   border-color: var(--accent-color);
   color: #fff;
 }
 
-/* Description */
 .exp2-desc {
   font-family: 'Inter', sans-serif;
   font-size: 1.1rem;
@@ -181,27 +145,58 @@ body.light-theme .exp2-company-tag { border-color: rgba(0,0,0,0.18); }
   max-width: 80%;
 }
 
-/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 1280px
+══════════════════════════════════════════════════════ */
+@media (max-width: 1280px) {
+  .exp2-role { font-size: clamp(2rem, 4vw, 4rem); }
+  .exp2-content-col { padding: 3.5rem 3rem 3.5rem 4vw; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 1024px (tablet)
+══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .exp2-num-col { width: clamp(5rem, 10vw, 9rem); }
+  .exp2-ghost-num { font-size: clamp(3rem, 7vw, 6rem); }
+  .exp2-role { font-size: clamp(1.8rem, 4vw, 3.5rem); }
+  .exp2-content-col { padding: 3rem 2.5rem 3rem 3vw; }
+  .exp2-desc { max-width: 90%; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 768px
+══════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .exp2-num-col {
-    width: clamp(3.5rem, 10vw, 6rem);
-    padding: 2.5rem 0;
-  }
+  .exp2-num-col { width: clamp(4rem, 10vw, 7rem); padding: 2.5rem 0; }
+  .exp2-ghost-num { font-size: clamp(2.5rem, 8vw, 4.5rem); }
+  .exp2-content-col { padding: 2.5rem 2rem 2.5rem 2.5vw; }
+  .exp2-role { font-size: clamp(1.6rem, 6vw, 3rem); margin-bottom: 1rem; }
+  .exp2-desc { font-size: 1rem; max-width: 100%; }
+  .exp2-company-row { margin-bottom: 1.5rem; }
+  .exp2-top-strip { margin-bottom: 1.5rem; }
+}
 
-  .exp2-ghost-num {
-    font-size: clamp(2rem, 8vw, 4rem);
-  }
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 480px
+══════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .exp2-num-col { width: clamp(3rem, 10vw, 5rem); padding: 2rem 0; }
+  .exp2-ghost-num { font-size: clamp(1.8rem, 9vw, 3.5rem); }
+  .exp2-content-col { padding: 2rem 1.5rem; }
+  .exp2-role { font-size: clamp(1.4rem, 7vw, 2.5rem); }
+  .exp2-company-tag { font-size: 0.75rem; padding: 0.3rem 0.7rem; }
+  .exp2-desc { font-size: 0.9rem; }
+  .exp2-date { font-size: 0.75rem; letter-spacing: 0.08em; }
+  .exp2-label-accented { font-size: 0.72rem; letter-spacing: 0.12em; }
+}
 
-  .exp2-content-col {
-    padding: 2.5rem 1.5rem;
-  }
-
-  .exp2-role {
-    font-size: clamp(1.6rem, 7vw, 3rem);
-  }
-
-  .exp2-desc {
-    font-size: 1rem;
-    max-width: 100%;
-  }
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 375px
+══════════════════════════════════════════════════════ */
+@media (max-width: 375px) {
+  .exp2-num-col { width: 3rem; }
+  .exp2-ghost-num { font-size: clamp(1.5rem, 10vw, 2.5rem); }
+  .exp2-role { font-size: clamp(1.2rem, 8vw, 2rem); }
+  .exp2-content-col { padding: 1.8rem 1rem; }
 }

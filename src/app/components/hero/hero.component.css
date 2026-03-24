@@ -6,7 +6,6 @@
   justify-content: center;
   overflow: hidden;
   padding-top: 10vh;
-  /* Atmospheric depth gradient */
   background:
     radial-gradient(ellipse 80% 60% at 20% 50%, var(--bg-glow) 0%, transparent 60%),
     radial-gradient(ellipse 60% 80% at 90% 10%, var(--bg-glow-white) 0%, transparent 55%),
@@ -45,9 +44,8 @@
 
 .line-reveal {
   display: block;
-  overflow: hidden; /* For GSAP reveal animation */
-  /* IMPORTANT: clip-path and transform are now set by GSAP.set() only — not CSS */
-  /* This ensures browsers don't hide hero text before GSAP initialises, fixing LCP */
+  overflow: hidden;
+  /* clip-path and transform set by GSAP.set() — not CSS (LCP fix) */
 }
 
 .hero-description {
@@ -67,10 +65,8 @@
   align-items: center;
   gap: 1.2rem;
   opacity: 0;
-  /* sits at the bottom-left of the hero content */
 }
 
-/* Vertical animated line */
 .scroll-line {
   width: 1px;
   height: 60px;
@@ -80,7 +76,6 @@
   border-radius: 2px;
 }
 
-/* The gliding dot */
 .scroll-dot {
   position: absolute;
   top: -100%;
@@ -110,7 +105,6 @@
   font-weight: 400;
 }
 
-/* Marquee */
 .marquee-wrapper {
   position: absolute;
   bottom: -2vw;
@@ -130,12 +124,9 @@
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: -0.05em;
-  /* GSAP will handle the animation, but we can set a base layout */
 }
 
-.marquee-content span {
-  padding-right: 2rem;
-}
+.marquee-content span { padding-right: 2rem; }
 
 .header-logo {
   position: absolute;
@@ -194,7 +185,7 @@
   max-width: 550px;
   z-index: 1;
   pointer-events: none;
-  opacity: 0; /* for GSAP reveal */
+  opacity: 0;
 }
 
 .floating-portrait {
@@ -205,9 +196,7 @@
   transition: all 1s var(--ease-out);
 }
 
-:host-context(body.light-theme) .floating-portrait {
-  display: none;
-}
+:host-context(body.light-theme) .floating-portrait { display: none; }
 
 .tech-badge-img {
   position: absolute;
@@ -217,42 +206,60 @@
   max-width: 300px;
   height: auto;
   animation: float 6s ease-in-out infinite;
-  filter: invert(1); /* Assuming black signature, make it white for dark theme */
+  filter: invert(1);
   opacity: 0.8;
 }
 
 @keyframes float {
-  0% { transform: translateY(0px) rotate(-5deg); }
-  50% { transform: translateY(-20px) rotate(0deg); }
+  0%   { transform: translateY(0px) rotate(-5deg); }
+  50%  { transform: translateY(-20px) rotate(0deg); }
   100% { transform: translateY(0px) rotate(-5deg); }
 }
-/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 1280px (small laptop, 1366, 1360, 1280)
+══════════════════════════════════════════════════════ */
+@media (max-width: 1280px) {
+  .hero-title { font-size: clamp(4rem, 10vw, 11rem); }
+  .hero-graphics { width: 40vw; right: 3vw; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 1024px (iPad landscape, tablet 1024)
+══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .hero-title { font-size: clamp(3.5rem, 9vw, 9rem); }
+  .hero-graphics { width: 44vw; top: 20%; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 768px  (tablet portrait, large phones 828)
+══════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .hero-section {
-    padding-top: 12vh;
-    min-height: 100svh;
-  }
+  .hero-section { padding-top: 12vh; }
+  .hero-graphics { display: none; }
+  .hero-title { font-size: clamp(3rem, 13vw, 6rem); letter-spacing: -0.03em; }
+  .hero-description { font-size: clamp(0.9rem, 3.5vw, 1.2rem); max-width: 100%; margin-bottom: 4rem; }
+  .hero-title-wrapper { margin-bottom: 2.5rem; }
+  .marquee-content { font-size: clamp(3.5rem, 16vw, 7rem); }
+  .scroll-indicator { display: none; }
+}
 
-  .hero-graphics {
-    display: none; /* hide portrait on mobile to avoid CLS + layout issues */
-  }
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 480px (iPhone 14/Plus, 412, 414, 390)
+══════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .hero-title { font-size: clamp(2.5rem, 13vw, 4rem); }
+  .hero-description { font-size: clamp(0.85rem, 4vw, 1.05rem); margin-bottom: 5vh; }
+  .hero-title-wrapper { margin-bottom: 2rem; }
+  .marquee-content { font-size: clamp(3rem, 16vw, 5rem); }
+}
 
-  .hero-title {
-    font-size: clamp(3.5rem, 15vw, 6rem);
-    letter-spacing: -0.03em;
-  }
-
-  .hero-description {
-    font-size: clamp(1rem, 4vw, 1.2rem);
-    max-width: 100%;
-    margin-bottom: 4rem;
-  }
-
-  .marquee-content {
-    font-size: clamp(4rem, 18vw, 8rem);
-  }
-
-  .scroll-indicator {
-    display: none;
-  }
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 375px (tiny phones: 320, 360, 375)
+══════════════════════════════════════════════════════ */
+@media (max-width: 375px) {
+  .hero-title { font-size: clamp(2rem, 14vw, 3.2rem); }
+  .hero-pre-title { font-size: 0.65rem; letter-spacing: 0.2em; }
+  .marquee-content { font-size: clamp(2.5rem, 16vw, 4rem); }
 }
