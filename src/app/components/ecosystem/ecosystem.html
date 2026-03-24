@@ -1,0 +1,29 @@
+<section class="ecosystem-section">
+  <div class="eco-header">
+    <h2 class="eco-title hollow-text">THE ECOSYSTEM</h2>
+    <p class="eco-subtitle">A command-line orchestration of premium intelligence, engineering & strategy tools.</p>
+  </div>
+
+  <div class="eco-canvas">
+    <!-- Scattered tools -->
+    <ng-container *ngFor="let cat of toolCategories">
+      <div *ngFor="let tool of cat.tools"
+           class="tool-node"
+           #toolNode
+           [class]="'size-' + tool.size"
+           [style.left.%]="tool.x"
+           [style.top.%]="tool.y"
+           [attr.data-depth]="tool.size === 'xlarge' ? 2 : tool.size === 'large' ? 1.5 : tool.size === 'medium' ? 1 : 0.8">
+        
+        <div class="tool-content interactive">
+          <span class="tool-cat-small">{{ cat.name }}</span>
+          <span class="tool-name">{{ tool.name }}</span>
+          <div class="tool-desc">{{ tool.desc }}</div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- Visual connecting tissue / Background elements -->
+    <div class="eco-background-label">INTELLIGENCE MATRIX 40+</div>
+  </div>
+</section>

@@ -1,0 +1,134 @@
+import { Component, AfterViewInit, ElementRef, ViewChildren, QueryList, NgZone } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+@Component({
+  selector: 'app-ecosystem',
+  standalone: true,
+  imports: [CommonModule],
+  templateUrl: './ecosystem.html',
+  styleUrl: './ecosystem.css',
+})
+export class Ecosystem implements AfterViewInit {
+  @ViewChildren('toolNode') toolNodes!: QueryList<ElementRef>;
+
+  toolCategories = [
+    {
+      name: 'STRATEGY & IDEATION',
+      tools: [
+        { name: 'ChatGPT', desc: 'idea generation, validation, problem framing', size: 'large', x: 10, y: 15 },
+        { name: 'Notion AI', desc: 'structured thinking, notes, PRDs', size: 'medium', x: 45, y: 10 },
+        { name: 'Miro', desc: 'collaborative brainstorming', size: 'large', x: 75, y: 20 },
+        { name: 'Whimsical', desc: 'mind maps, flows', size: 'small', x: 25, y: 35 },
+        { name: 'Perplexity AI', desc: 'research + insights', size: 'medium', x: 60, y: 40 },
+        { name: 'Tome', desc: 'strategy decks', size: 'small', x: 85, y: 55 }
+      ]
+    },
+    {
+      name: 'PRODUCT & PLANNING',
+      tools: [
+        { name: 'ClickUp', desc: 'task + sprint planning', size: 'large', x: 15, y: 50 },
+        { name: 'Jira', desc: 'dev workflow + backlog', size: 'medium', x: 40, y: 65 },
+        { name: 'Notion', desc: 'PRDs, docs, roadmap', size: 'large', x: 70, y: 50 },
+        { name: 'Productboard', desc: 'feature prioritization', size: 'medium', x: 10, y: 80 }
+      ]
+    },
+    {
+      name: 'DESIGN & PROTOTYPE',
+      tools: [
+        { name: 'Figma', desc: 'UI/UX design', size: 'xlarge', x: 50, y: 30 },
+        { name: 'Framer', desc: 'AI website design', size: 'large', x: 85, y: 10 },
+        { name: 'Uizard', desc: 'rapid prototyping', size: 'medium', x: 30, y: 75 },
+        { name: 'Galileo AI', desc: 'text → UI', size: 'small', x: 5, y: 40 },
+        { name: 'Adobe Firefly', desc: 'visuals & assets', size: 'medium', x: 78, y: 85 }
+      ]
+    },
+    {
+      name: 'ENGINEERING & DEPLOY',
+      tools: [
+        { name: 'Claude Code', desc: 'AI-native coding', size: 'xlarge', x: 55, y: 70 },
+        { name: 'GitHub Copilot', desc: 'code suggestions', size: 'large', x: 20, y: 25 },
+        { name: 'Cursor', desc: 'AI-native IDE', size: 'xlarge', x: 80, y: 40 },
+        { name: 'Replit', desc: 'build + deploy', size: 'medium', x: 40, y: 85 },
+        { name: 'Vercel', desc: 'deploy apps', size: 'large', x: 90, y: 75 }
+      ]
+    },
+    {
+      name: 'QA & RELIABILITY',
+      tools: [
+        { name: 'Testim', desc: 'automated testing', size: 'small', x: 5, y: 60 },
+        { name: 'Selenium', desc: 'legacy automation', size: 'small', x: 28, y: 92 },
+        { name: 'Postman', desc: 'API testing', size: 'medium', x: 65, y: 90 },
+        { name: 'Sentry', desc: 'bug tracking', size: 'medium', x: 88, y: 25 },
+        { name: 'QA Wolf', desc: 'test automation', size: 'small', x: 12, y: 10 }
+      ]
+    },
+    {
+      name: 'SECURITY & INFRA',
+      tools: [
+        { name: 'Cloudflare', desc: 'DDoS + protection', size: 'large', x: 35, y: 45 },
+        { name: 'Snyk', desc: 'vulnerability scanning', size: 'medium', x: 72, y: 65 },
+        { name: 'Burp Suite', desc: 'penetration testing', size: 'medium', x: 50, y: 55 },
+        { name: 'Auth0', desc: 'login security', size: 'medium', x: 5, y: 20 },
+        { name: 'Okta', desc: 'identity + access', size: 'small', x: 22, y: 5 }
+      ]
+    },
+    {
+      name: 'GROWTH & INSIGHTS',
+      tools: [
+        { name: 'Google Analytics', desc: 'traffic insights', size: 'large', x: 92, y: 60 },
+        { name: 'Mixpanel', desc: 'user behavior', size: 'medium', x: 32, y: 20 },
+        { name: 'Hotjar', desc: 'heatmaps', size: 'small', x: 48, y: 5 },
+        { name: 'Optimizely', desc: 'A/B testing', size: 'medium', x: 68, y: 15 },
+        { name: 'Amplitude', desc: 'product insights', size: 'medium', x: 82, y: 92 }
+      ]
+    },
+    {
+      name: 'PAYMENTS & SALES',
+      tools: [
+        { name: 'Stripe', desc: 'global payments', size: 'xlarge', x: 40, y: 35 },
+        { name: 'Razorpay', desc: 'India payments', size: 'large', x: 10, y: 92 },
+        { name: 'HubSpot', desc: 'CRM + marketing', size: 'large', x: 52, y: 95 },
+        { name: 'Zoho CRM', desc: 'sales pipeline', size: 'medium', x: 75, y: 5 },
+        { name: 'Mailchimp', desc: 'email campaigns', size: 'medium', x: 2, y: 75 }
+      ]
+    }
+  ];
+
+  constructor(private ngZone: NgZone) {}
+
+  ngAfterViewInit() {
+    this.ngZone.runOutsideAngular(() => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      this.toolNodes.forEach((node, index) => {
+        const el = node.nativeElement;
+        const depth = parseFloat(el.getAttribute('data-depth') || '1');
+        
+        // Random drift based on scroll
+        gsap.to(el, {
+          y: -200 * depth,
+          x: (Math.random() - 0.5) * 50,
+          rotate: (Math.random() - 0.5) * 10,
+          scrollTrigger: {
+            trigger: '.eco-canvas',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1.5
+          }
+        });
+
+        // Hover effect for premium feel
+        el.addEventListener('mouseenter', () => {
+          gsap.to(el, { scale: 1.1, zIndex: 100, duration: 0.4, ease: 'power2.out' });
+          gsap.to(el.querySelector('.tool-desc'), { opacity: 1, y: 0, duration: 0.4 });
+        });
+        el.addEventListener('mouseleave', () => {
+          gsap.to(el, { scale: 1, zIndex: 1, duration: 0.4, ease: 'power2.in' });
+          gsap.to(el.querySelector('.tool-desc'), { opacity: 0, y: 10, duration: 0.4 });
+        });
+      });
+    });
+  }
+}

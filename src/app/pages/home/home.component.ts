@@ -7,6 +7,7 @@ import { TechStackComponent } from '../../components/tech-stack/tech-stack.compo
 import { EducationComponent } from '../../components/education/education.component';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { FeaturedWorkComponent } from '../../components/featured-work/featured-work.component';
+import { Ecosystem } from '../../components/ecosystem/ecosystem';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,7 @@ import { FeaturedWorkComponent } from '../../components/featured-work/featured-w
     FeaturedWorkComponent,
     ExperienceComponent,
     TechStackComponent,
+    Ecosystem,
     EducationComponent,
     FooterComponent
   ],

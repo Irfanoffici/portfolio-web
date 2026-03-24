@@ -1,0 +1,144 @@
+.ecosystem-section {
+  position: relative;
+  background-color: var(--bg-color);
+  padding: 20vh 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.eco-header {
+  padding: 0 5vw;
+  margin-bottom: 5vh;
+  position: relative;
+  z-index: 10;
+}
+
+.eco-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(4rem, 12vw, 12rem);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.eco-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin-top: 2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.eco-canvas {
+  position: relative;
+  width: 100%;
+  height: 150vh; /* Extra height for kinetic scattering */
+  margin-top: -10vh;
+}
+
+.tool-node {
+  position: absolute;
+  z-index: 1;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.tool-content {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  cursor: crosshair;
+}
+
+.tool-cat-small {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: 0.5rem;
+}
+
+.tool-name {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 900;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #fff;
+  transition: color 0.3s ease;
+}
+
+.tool-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  max-width: 250px;
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(5px);
+  padding: 1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Sizing Weights */
+.size-xlarge .tool-name { font-size: clamp(3rem, 6vw, 6rem); }
+.size-large .tool-name { font-size: clamp(2rem, 4vw, 4rem); }
+.size-medium .tool-name { font-size: clamp(1.2rem, 2.5vw, 2.5rem); }
+.size-small .tool-name { font-size: clamp(0.9rem, 1.5vw, 1.5rem); }
+
+.tool-node:hover .tool-name {
+  color: var(--accent-color);
+  text-shadow: 0 0 20px var(--bg-glow);
+}
+
+.eco-background-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-15deg);
+  font-family: 'Outfit', sans-serif;
+  font-size: 25vw;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+}
+
+/* Luxury brutalist touches */
+.tool-node::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border-left: 1px solid rgba(255,51,102,0);
+  transition: all 0.4s ease;
+}
+
+.tool-node:hover::after {
+  height: 120%;
+  border-left: 2px solid var(--accent-color);
+  transform: translateY(-10%);
+}
+
+@media (max-width: 768px) {
+  .eco-canvas {
+    height: 300vh; /* More vertical space for mobile overlap */
+  }
+  .tool-node {
+    margin-bottom: 2rem;
+  }
+  .size-xlarge .tool-name { font-size: 3rem; }
+  .size-large .tool-name { font-size: 2.2rem; }
+  .size-medium .tool-name { font-size: 1.5rem; }
+}
