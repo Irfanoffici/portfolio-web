@@ -35,7 +35,7 @@ export class AboutComponent implements AfterViewInit {
           end: 'bottom 50%',
           scrub: 1,
         },
-        color: '#f1f1f1',
+        color: 'var(--text-color)',
         opacity: 1,
         ease: 'none'
       });
