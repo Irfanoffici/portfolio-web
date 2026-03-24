@@ -109,4 +109,8 @@ export class TechStackComponent implements AfterViewInit {
     this.marquees.forEach(m => m.play());
     this.tooltipService.hide();
   }
+
+  onLeaveSection() {
+    this.tooltipService.hide();
+  }
 }
