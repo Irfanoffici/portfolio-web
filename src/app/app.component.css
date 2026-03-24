@@ -18,11 +18,10 @@
     border-radius 0.45s var(--ease-honey);
   will-change: transform;
 }
-/* Hide cursor on touch devices — it's meaningless there */
+/* No cursor on touch devices */
 @media (hover: none) {
   .custom-cursor { display: none !important; }
 }
-
 .custom-cursor.active {
   width: 50px;
   height: 50px;
@@ -30,7 +29,6 @@
   border: 1px solid rgba(255, 51, 102, 0.7);
   box-shadow: 0 0 20px rgba(255, 51, 102, 0.15), inset 0 0 20px rgba(255, 51, 102, 0.05);
   mix-blend-mode: normal;
-  backdrop-filter: blur(3px);
 }
 
 /* ═══════════════════════════════════════════════
@@ -40,29 +38,24 @@
   position: fixed;
   top: 2rem;
   left: 4vw;
-  /* Sit above the overlay (9001) but below cursor (9999) */
   z-index: 9100;
   display: flex;
   align-items: center;
   gap: 1.5rem;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .global-logo img {
   height: 40px;
   width: auto;
-  image-rendering: auto;
   transition: transform 0.6s var(--ease-honey);
   will-change: transform;
   filter: brightness(0) invert(1);
 }
 body.light-theme .global-logo img { filter: brightness(0); }
+.global-logo:hover img { transform: scale(0.9) rotate(-5deg); }
 
-.global-logo:hover img {
-  transform: scale(0.9) rotate(-5deg);
-}
-
-/* Vertical flipper for MENU / CLOSE */
 .logo-text-flipper {
   height: 1.1em;
   overflow: hidden;
@@ -73,28 +66,19 @@ body.light-theme .global-logo img { filter: brightness(0); }
   font-weight: 500;
   color: var(--accent-color);
 }
-
 .flipper-text {
   display: block;
   transition: transform 0.6s var(--ease-honey);
   will-change: transform;
 }
-
 .text-close {
   position: absolute;
   top: 100%;
   left: 0;
   color: var(--accent-color);
 }
-
-/* When Nav is open, slide MENU up and CLOSE into view */
-.global-logo.nav-open .flipper-text {
-  transform: translateY(-100%);
-}
-.global-logo.nav-open img {
-  transform: scale(0.8);
-  opacity: 0.5;
-}
+.global-logo.nav-open .flipper-text { transform: translateY(-100%); }
+.global-logo.nav-open img { transform: scale(0.8); opacity: 0.5; }
 
 /* ═══════════════════════════════════════════════
    FULLSCREEN NAVIGATION OVERLAY
@@ -103,47 +87,31 @@ body.light-theme .global-logo img { filter: brightness(0); }
   position: fixed;
   inset: 0;
   z-index: 9001;
-
-  /* KEY FIX: visibility:hidden collapses the layer completely (incl. backdrop-filter)
-     when the nav is closed — opacity:0 alone doesn't stop GPU bleed on some browsers */
   visibility: hidden;
   pointer-events: none;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
-  /* Delay visibility collapse until AFTER the fade-out (0.5s) is done */
   transition: visibility 0s linear 0.5s;
 }
-
 .nav-overlay.active {
   visibility: visible;
   pointer-events: auto;
-  /* Show immediately when opening */
   transition: visibility 0s linear 0s;
 }
 
-/* Animated Glassmorphic Backdrop */
 .nav-bg {
   position: absolute;
   inset: 0;
-  background-color: rgba(4, 4, 4, 0.92);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  background-color: rgba(4, 4, 4, 0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   opacity: 0;
   transition: opacity 0.5s var(--ease-honey);
-  will-change: opacity;
 }
-body.light-theme .nav-bg {
-  background-color: rgba(253, 253, 253, 0.95);
-}
+body.light-theme .nav-bg { background-color: rgba(253, 253, 253, 0.97); }
+.nav-overlay.active .nav-bg { opacity: 1; }
 
-.nav-overlay.active .nav-bg {
-  opacity: 1;
-}
-
-/* ── Content Container ── */
 .nav-content {
   position: relative;
   z-index: 2;
@@ -154,14 +122,12 @@ body.light-theme .nav-bg {
   flex-direction: column;
   height: 100%;
   justify-content: center;
-  overflow-y: auto; /* allow scrolling inside nav on very small screens */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* ── Links ── */
-.nav-links {
-  display: flex;
-  flex-direction: column;
-}
+.nav-links { display: flex; flex-direction: column; }
 
 .nav-item {
   display: flex;
@@ -169,26 +135,34 @@ body.light-theme .nav-bg {
   gap: 2rem;
   text-decoration: none;
   cursor: pointer;
-  padding: 1.5vh 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--text-color) 5%, transparent);
-  overflow: hidden;
-  /* Hover effect setup */
-  transition: padding-left 0.6s var(--ease-honey);
+  padding: 1.2vh 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--text-color) 6%, transparent);
+  /* NO overflow: hidden here — clips text horizontally */
+  transition: gap 0.6s var(--ease-honey);
 }
-
-.nav-item:hover {
-  padding-left: 3vw;
+.nav-item:hover { gap: 3rem; }
+@media (hover: none) {
+  /* No hover indent on touch — causes janky layout jump */
+  .nav-item:hover { gap: 2rem; }
 }
 
 .nav-num {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(0.9rem, 1.5vw, 1.2rem);
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
   font-weight: 300;
   color: var(--accent-color);
   margin-top: clamp(0.4rem, 1.5vw, 1.5rem);
+  flex-shrink: 0;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s var(--ease-honey), transform 0.8s var(--ease-honey);
+}
+
+/* Clip wrapper — ONLY clips vertically for the slide-up animation */
+.nav-text-clip {
+  flex: 1;
+  overflow: hidden;
+  min-width: 0; /* allow flex child to shrink */
 }
 
 .nav-text {
@@ -199,67 +173,62 @@ body.light-theme .nav-bg {
   letter-spacing: -0.04em;
   margin: 0;
   text-transform: uppercase;
+  white-space: nowrap;
   color: transparent;
   -webkit-text-stroke: 1px color-mix(in srgb, var(--text-color) 15%, transparent);
-  /* Slide-up reveal */
   transform: translateY(110%);
   transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
               color 0.5s var(--ease-honey),
               -webkit-text-stroke 0.5s var(--ease-honey);
   will-change: transform;
 }
-
 .nav-item:hover .nav-text {
   color: var(--text-color);
   -webkit-text-stroke: 1px transparent;
 }
 
-/* When active, items slide up */
-.nav-overlay.active .nav-item .nav-text {
-  transform: translateY(0);
-}
-.nav-overlay.active .nav-num {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* Reveal */
+.nav-overlay.active .nav-item .nav-text { transform: translateY(0); }
+.nav-overlay.active .nav-num { opacity: 1; transform: translateY(0); }
 
-/* Stagger delays */
-.nav-item:nth-child(1) .nav-text, .nav-item:nth-child(1) .nav-num { transition-delay: 0.06s; }
-.nav-item:nth-child(2) .nav-text, .nav-item:nth-child(2) .nav-num { transition-delay: 0.12s; }
-.nav-item:nth-child(3) .nav-text, .nav-item:nth-child(3) .nav-num { transition-delay: 0.18s; }
-.nav-item:nth-child(4) .nav-text, .nav-item:nth-child(4) .nav-num { transition-delay: 0.24s; }
+/* Stagger */
+.nav-item:nth-child(1) .nav-text,
+.nav-item:nth-child(1) .nav-num { transition-delay: 0.06s; }
+.nav-item:nth-child(2) .nav-text,
+.nav-item:nth-child(2) .nav-num { transition-delay: 0.12s; }
+.nav-item:nth-child(3) .nav-text,
+.nav-item:nth-child(3) .nav-num { transition-delay: 0.18s; }
+.nav-item:nth-child(4) .nav-text,
+.nav-item:nth-child(4) .nav-num { transition-delay: 0.24s; }
 
 /* ── Footer Info ── */
 .nav-footer {
-  margin-top: 6vh;
+  margin-top: 5vh;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s var(--ease-honey) 0.35s, transform 0.8s var(--ease-honey) 0.35s;
-  border-top: 1px solid color-mix(in srgb, var(--text-color) 5%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 6%, transparent);
   padding-top: 2rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
 }
-
-.nav-overlay.active .nav-footer {
-  opacity: 1;
-  transform: translateY(0);
-}
+.nav-overlay.active .nav-footer { opacity: 1; transform: translateY(0); }
 
 .nav-info {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.85rem;
+  gap: 0.4rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
-
 .nav-socials a {
   text-decoration: none;
   font-family: 'Outfit', sans-serif;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   letter-spacing: 0.2em;
   font-weight: 500;
   color: var(--text-color);
@@ -269,22 +238,17 @@ body.light-theme .nav-bg {
 .nav-socials a::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 1px;
+  bottom: 0; left: 0;
+  width: 100%; height: 1px;
   background: var(--accent-color);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.4s var(--ease-honey);
 }
-.nav-socials a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+.nav-socials a:hover::after { transform: scaleX(1); transform-origin: left; }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE — 1024px (tablet)
+   RESPONSIVE — 1024px
 ═══════════════════════════════════════════════ */
 @media (max-width: 1024px) {
   .nav-text { font-size: clamp(2.5rem, 9vw, 8rem); }
@@ -292,35 +256,35 @@ body.light-theme .nav-bg {
 }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE — 768px (large phones / tablet portrait)
+   RESPONSIVE — 768px
 ═══════════════════════════════════════════════ */
 @media (max-width: 768px) {
   .global-logo { top: 1.5rem; left: 5vw; gap: 1rem; }
-  .global-logo img { height: 32px; }
-  .logo-text-flipper { font-size: 0.8rem; }
-  .nav-text { font-size: clamp(2.2rem, 12vw, 5rem); }
+  .global-logo img { height: 30px; }
+  .logo-text-flipper { font-size: 0.78rem; }
+  .nav-content { padding: 0 5vw; justify-content: center; }
+  .nav-text { font-size: clamp(2rem, 11vw, 5rem); white-space: nowrap; }
   .nav-item { gap: 1.2rem; padding: 2vh 0; }
-  .nav-item:hover { padding-left: 0; } /* disable indent on touch */
-  .nav-footer { margin-top: 4vh; flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-  .nav-content { padding: 0 6vw; justify-content: center; }
+  .nav-footer { margin-top: 4vh; }
 }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE — 480px (phones)
+   RESPONSIVE — 480px
 ═══════════════════════════════════════════════ */
 @media (max-width: 480px) {
-  .global-logo { top: 1.2rem; left: 5vw; gap: 0.8rem; }
-  .global-logo img { height: 28px; }
-  .nav-text { font-size: clamp(2rem, 14vw, 4.5rem); letter-spacing: -0.03em; }
-  .nav-num { font-size: 0.8rem; }
+  .global-logo { top: 1.2rem; left: 5vw; gap: 0.7rem; }
+  .global-logo img { height: 26px; }
+  .nav-text { font-size: clamp(1.8rem, 13vw, 4rem); letter-spacing: -0.03em; }
+  .nav-num { font-size: 0.75rem; margin-top: 0.4rem; }
   .nav-item { padding: 1.8vh 0; gap: 1rem; }
-  .nav-footer { display: none; } /* hide on very small screens to avoid crowding */
+  .nav-footer { margin-top: 3vh; }
 }
 
 /* ═══════════════════════════════════════════════
-   RESPONSIVE — 375px (tiny phones)
+   RESPONSIVE — 375px
 ═══════════════════════════════════════════════ */
 @media (max-width: 375px) {
-  .nav-text { font-size: clamp(1.8rem, 15vw, 4rem); }
+  .nav-text { font-size: clamp(1.6rem, 14vw, 3.5rem); }
   .nav-item { padding: 1.5vh 0; }
+  .nav-content { padding: 0 4.5vw; }
 }

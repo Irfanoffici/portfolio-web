@@ -30,40 +30,47 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initLenis() {
-    this.lenis = new Lenis({
-      lerp: 0.07,           // Honey-smooth — 0.07 is buttery without being laggy
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.85, // Slightly slower wheel for more control
-      touchMultiplier: 2,
-    });
+    // Disable Lenis on touch devices — native scroll is faster and smoother on mobile
+    const isTouchDevice = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
 
-    this.lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      this.lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-
-    // Section reveal — IntersectionObserver (lighter than ScrollTrigger)
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          (e.target as HTMLElement).style.opacity = '1';
-          (e.target as HTMLElement).style.transform = 'translateY(0)';
-          io.unobserve(e.target);
-        }
+    if (!isTouchDevice) {
+      this.lenis = new Lenis({
+        lerp: 0.07,
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.85,
+        touchMultiplier: 2,
       });
-    }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
 
-    document.querySelectorAll('.philosophy-para, .reveal-text').forEach(el => {
-      (el as HTMLElement).style.transition = `opacity 1.2s var(--ease-honey), transform 1.2s var(--ease-honey)`;
-      (el as HTMLElement).style.transform = 'translateY(40px)';
-      (el as HTMLElement).style.opacity = '0.08';
-      io.observe(el);
-    });
+      this.lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        this.lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+    }
+
+    // Only run IntersectionObserver reveal on desktop (mobile has no hover anyway)
+    if (!isTouchDevice) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).style.opacity = '1';
+            (e.target as HTMLElement).style.transform = 'translateY(0)';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.philosophy-para, .reveal-text').forEach(el => {
+        (el as HTMLElement).style.transition = `opacity 1.2s var(--ease-honey), transform 1.2s var(--ease-honey)`;
+        (el as HTMLElement).style.transform = 'translateY(40px)';
+        (el as HTMLElement).style.opacity = '0.08';
+        io.observe(el);
+      });
+    }
   }
 
   initCursor() {
@@ -95,18 +102,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.isNavOpen = !this.isNavOpen;
     if (this.isNavOpen) {
       this.lenis?.stop();
+      document.body.style.overflow = 'hidden'; // ensure body doesn't scroll behind nav
     } else {
       this.lenis?.start();
+      document.body.style.overflow = '';
     }
   }
 
   scrollTo(selector: string) {
     this.toggleNav();
     setTimeout(() => {
-      this.lenis?.scrollTo(selector, { 
-        duration: 1.5, 
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) 
-      });
+      if (this.lenis) {
+        // Desktop: Lenis smooth scroll
+        this.lenis.scrollTo(selector, {
+          duration: 1.5,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+        });
+      } else {
+        // Mobile: native scroll
+        const el = document.querySelector(selector);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }, 500);
   }
 

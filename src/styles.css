@@ -48,6 +48,9 @@ body.light-theme {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* Remove blue tap highlight on ALL elements — native app feel */
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
 }
 
 html {
@@ -85,6 +88,23 @@ section {
   will-change: transform;
   transform: translateZ(0);
   backface-visibility: hidden;
+  /* Eliminates 300ms tap delay on mobile */
+  touch-action: manipulation;
+}
+
+a, button, [role="button"] {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  cursor: pointer;
+}
+
+/* Prevent text selection on UI elements that aren't meant to be selected */
+.nav-item, .nav-text, .nav-num,
+.global-logo, .svc-item-header,
+.fw-monolithic-item, .exp2-block,
+.footer-link-row, .send-mail-btn {
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 /* ── Prefers reduced motion ── */
