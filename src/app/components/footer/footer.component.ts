@@ -1,5 +1,6 @@
 import { Component, AfterViewInit, ElementRef, ViewChild, OnDestroy, NgZone } from '@angular/core';
 import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 @Component({
   selector: 'app-footer',
@@ -10,7 +11,7 @@ import gsap from 'gsap';
 })
 export class FooterComponent implements AfterViewInit, OnDestroy {
   @ViewChild('footerMarquee') marqueeWrapper!: ElementRef;
-  
+
   currentTime: string = '';
   private clockInterval: ReturnType<typeof setInterval> | null = null;
 
@@ -18,8 +19,8 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {
-      this.initMarquee();
       this.initClock();
+      this.initMarquee();
       this.initReveal();
     });
   }
@@ -39,35 +40,49 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
   }
 
   initMarquee() {
-    const marquee = this.marqueeWrapper.nativeElement.querySelector('.marquee-content');
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    const marquee = this.marqueeWrapper?.nativeElement?.querySelector('.marquee-content');
+    if (!marquee) return;
+
+    if (isTouch) {
+      // CSS animation on mobile — GPU native
+      const track = this.marqueeWrapper.nativeElement;
+      track.style.animation = 'marquee-fwd 20s linear infinite';
+      return;
+    }
+
+    // Desktop: GSAP marquee
     const clone = marquee.cloneNode(true);
     this.marqueeWrapper.nativeElement.appendChild(clone);
-
     gsap.to('.footer-marquee .marquee-content', {
-      xPercent: -100,
-      repeat: -1,
-      duration: 18,
-      ease: 'linear'
+      xPercent: -100, repeat: -1, duration: 18, ease: 'linear'
     });
   }
 
   initReveal() {
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (isTouch) {
+      // On mobile: make all footer-reveal elements visible immediately
+      document.querySelectorAll('.footer-reveal').forEach(el => {
+        (el as HTMLElement).style.opacity = '1';
+        (el as HTMLElement).style.transform = 'none';
+      });
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger);
     setTimeout(() => {
-      const elements = document.querySelectorAll('.footer-reveal');
-      elements.forEach((el, i) => {
+      document.querySelectorAll('.footer-reveal').forEach((el, i) => {
         gsap.fromTo(el,
           { y: 60, opacity: 0 },
           {
             scrollTrigger: { trigger: el, start: 'top 90%' },
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            delay: i * 0.15,
-            ease: 'power3.out'
+            y: 0, opacity: 1, duration: 0.9,
+            delay: i * 0.12, ease: 'power3.out'
           }
         );
       });
-    }, 200);
+    }, 100);
   }
 
   ngOnDestroy() {

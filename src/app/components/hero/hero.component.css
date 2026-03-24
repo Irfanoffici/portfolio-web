@@ -40,11 +40,12 @@
   display: flex;
   flex-direction: column;
   letter-spacing: -0.04em;
+  /* Prevent '& Tech Enthu' wrapping within a line-reveal span */
 }
-
 .line-reveal {
   display: block;
   overflow: hidden;
+  white-space: nowrap; /* each span guaranteed one line — prevents '& Tech Enthu' breaking */
   /* clip-path and transform set by GSAP.set() — not CSS (LCP fix) */
 }
 
