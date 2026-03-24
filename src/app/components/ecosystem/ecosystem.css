@@ -41,9 +41,9 @@
 }
 
 /* Dim non-hovered items for 'Focus' mode */
-.eco-canvas:hover .tool-node:not(:hover) {
+.is-focus-mode .tool-node:not(:hover) {
   opacity: 0.01;
-  filter: blur(12px);
+  filter: blur(15px);
   transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
   pointer-events: none;
 }

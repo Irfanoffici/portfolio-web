@@ -121,10 +121,12 @@ export class Ecosystem implements AfterViewInit {
 
         // Hover effect for premium feel
         el.addEventListener('mouseenter', () => {
-          gsap.to(el, { scale: 1.1, zIndex: 100, duration: 0.4, ease: 'power2.out' });
+          el.closest('.eco-canvas')?.classList.add('is-focus-mode');
+          gsap.to(el, { scale: 1.15, zIndex: 100, duration: 0.4, ease: 'power2.out' });
           gsap.to(el.querySelector('.tool-desc'), { opacity: 1, y: 0, duration: 0.4 });
         });
         el.addEventListener('mouseleave', () => {
+          el.closest('.eco-canvas')?.classList.remove('is-focus-mode');
           gsap.to(el, { scale: 1, zIndex: 1, duration: 0.4, ease: 'power2.in' });
           gsap.to(el.querySelector('.tool-desc'), { opacity: 0, y: 10, duration: 0.4 });
         });
