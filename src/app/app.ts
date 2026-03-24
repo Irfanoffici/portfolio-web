@@ -22,7 +22,6 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   isNavOpen = false;
   isDevMode = isDevMode();
 
-  @ViewChild('customCursor') customCursor!: ElementRef;
   @ViewChild('globalTooltip') globalTooltip?: ElementRef;
 
   constructor(
@@ -35,25 +34,15 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.initCustomCursor();
+    this.initGlobalTracking();
   }
 
-  initCustomCursor() {
+  initGlobalTracking() {
     const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
     if (isTouch) return;
 
     this.ngZone.runOutsideAngular(() => {
-      const cursor = this.customCursor.nativeElement;
-      
       window.addEventListener('mousemove', (e) => {
-        // Move cursor
-        gsap.to(cursor, {
-          x: e.clientX,
-          y: e.clientY,
-          duration: 0.1,
-          ease: 'power2.out'
-        });
-
         // Move global tooltip if it exists and is active
         if (this.globalTooltip) {
           gsap.to(this.globalTooltip.nativeElement, {
@@ -62,21 +51,6 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
             duration: 0.1,
             ease: 'power2.out'
           });
-        }
-      });
-
-      // Hover effects
-      document.addEventListener('mouseover', (e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        if (target.closest('.interactive') || target.closest('a') || target.closest('button')) {
-          gsap.to(cursor, { scale: 4, opacity: 0.15, duration: 0.3 });
-        }
-      });
-
-      document.addEventListener('mouseout', (e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        if (target.closest('.interactive') || target.closest('a') || target.closest('button')) {
-          gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
         }
       });
     });

@@ -1,8 +1,5 @@
 <router-outlet></router-outlet>
 
-<!-- Custom Cursor (desktop only) -->
-<div class="custom-cursor" #customCursor aria-hidden="true"></div>
-
 <!-- Global Tooltip (for Arsenal section etc) -->
 <div class="ars-tooltip-global" #globalTooltip [hidden]="!tooltipService.hoveredTool()">
   <div class="ars-tt-inner" *ngIf="tooltipService.hoveredTool() as tool">

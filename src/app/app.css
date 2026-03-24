@@ -1,26 +1,3 @@
-/* ── Custom Cursor ── */
-.custom-cursor {
-  position: fixed;
-  top: 0; left: 0;
-  width: 12px; height: 12px;
-  background-color: var(--accent-color);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: exclusion;
-  transition: width .45s var(--ease-honey), height .45s var(--ease-honey),
-              background-color .3s ease, border-radius .45s var(--ease-honey);
-  will-change: transform;
-}
-@media (hover: none) { .custom-cursor { display: none !important; } }
-.custom-cursor.active {
-  width: 50px; height: 50px;
-  background-color: transparent;
-  border: 1px solid rgba(255,51,102,.7);
-  mix-blend-mode: normal;
-}
-
 /* ── Global Tooltip ── */
 .ars-tooltip-global {
   position: fixed;
