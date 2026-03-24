@@ -98,23 +98,48 @@ export class TechStackComponent implements AfterViewInit {
   onHoverTool(tool: any, event: MouseEvent) {
     this.hoveredTool = tool;
     this.marquees.forEach(m => m.pause());
+    
+    // Jump to pointer immediately BEFORE showing
+    gsap.set(this.tooltipElement.nativeElement, {
+      x: event.clientX,
+      y: event.clientY,
+      opacity: 0,
+      scale: 0.5
+    });
+
+    // Animate in
+    gsap.to(this.tooltipElement.nativeElement, {
+      opacity: 1,
+      scale: 1,
+      duration: 0.3,
+      ease: 'back.out(1.7)'
+    });
+
     this.onMoveTool(event);
   }
 
   onMoveTool(event: MouseEvent) {
     if (!this.hoveredTool || !this.tooltipElement) return;
     
-    // Snappy tracking (butter smooth)
+    // Low latency drag follow
     gsap.to(this.tooltipElement.nativeElement, {
-      x: event.clientX + 20,
-      y: event.clientY + 20,
-      duration: 0.05,
-      ease: 'none'
+      x: event.clientX + 15,
+      y: event.clientY + 15,
+      duration: 0.1,
+      ease: 'power2.out'
     });
   }
 
   onLeaveTool() {
     this.hoveredTool = null;
     this.marquees.forEach(m => m.play());
+
+    // Animate out
+    gsap.to(this.tooltipElement.nativeElement, {
+      opacity: 0,
+      scale: 0.8,
+      duration: 0.2,
+      ease: 'power2.in'
+    });
   }
 }

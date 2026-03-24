@@ -36,7 +36,7 @@
   </div>
 
   <!-- Custom fixed tooltip that follows cursor -->
-  <div class="ars-tooltip" #tooltipElement [class.visible]="hoveredTool">
+  <div class="ars-tooltip" #tooltipElement>
     <div class="ars-tt-inner" *ngIf="hoveredTool">
       <h4>{{ hoveredTool.name }}</h4>
       <p>{{ hoveredTool.extendedDesc }}</p>

@@ -1,4 +1,4 @@
-import { Component, signal, OnInit, OnDestroy, isDevMode, NgZone } from '@angular/core';
+import { Component, signal, OnInit, OnDestroy, isDevMode, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import Lenis from '@studio-freight/lenis';
@@ -21,10 +21,48 @@ export class App implements OnInit, OnDestroy {
   isNavOpen = false;
   isDevMode = isDevMode();
 
+  @ViewChild('customCursor') customCursor!: ElementRef;
+
   constructor(private ngZone: NgZone) {}
 
   ngOnInit() {
     this.initLenis();
+    this.initCustomCursor();
+  }
+
+  initCustomCursor() {
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+    if (isTouch) return;
+
+    this.ngZone.runOutsideAngular(() => {
+      // Keep state in local vars to minimize lookups
+      const cursor = this.customCursor.nativeElement;
+      
+      // Move cursor
+      window.addEventListener('mousemove', (e) => {
+        gsap.to(cursor, {
+          x: e.clientX,
+          y: e.clientY,
+          duration: 0.1,
+          ease: 'power2.out'
+        });
+      });
+
+      // Hover effects
+      document.addEventListener('mouseover', (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('.interactive') || target.closest('a') || target.closest('button')) {
+          gsap.to(cursor, { scale: 4, opacity: 0.15, duration: 0.3 });
+        }
+      });
+
+      document.addEventListener('mouseout', (e: MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('.interactive') || target.closest('a') || target.closest('button')) {
+          gsap.to(cursor, { scale: 1, opacity: 1, duration: 0.3 });
+        }
+      });
+    });
   }
 
   initLenis() {
