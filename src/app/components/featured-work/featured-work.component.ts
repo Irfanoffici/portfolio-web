@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, NgZone } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -29,25 +29,29 @@ export class FeaturedWorkComponent implements AfterViewInit {
     }
   ];
 
-  ngAfterViewInit() {
-    gsap.registerPlugin(ScrollTrigger);
+  constructor(private ngZone: NgZone) {}
 
-    const cards = this.workContainer.nativeElement.querySelectorAll('.fw-row');
-    
-    gsap.fromTo(cards, 
-      { scale: 0.9, opacity: 0, y: 50 },
-      {
-        scrollTrigger: {
-          trigger: this.workContainer.nativeElement,
-          start: 'top 80%',
-        },
-        scale: 1,
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: 'power3.out'
-      }
-    );
+  ngAfterViewInit() {
+    this.ngZone.runOutsideAngular(() => {
+      gsap.registerPlugin(ScrollTrigger);
+
+      const cards = this.workContainer.nativeElement.querySelectorAll('.fw-row');
+      
+      gsap.fromTo(cards, 
+        { scale: 0.9, opacity: 0, y: 50 },
+        {
+          scrollTrigger: {
+            trigger: this.workContainer.nativeElement,
+            start: 'top 80%',
+          },
+          scale: 1,
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: 'power3.out'
+        }
+      );
+    });
   }
 }

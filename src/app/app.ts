@@ -1,4 +1,4 @@
-import { Component, signal, OnInit, OnDestroy, isDevMode } from '@angular/core';
+import { Component, signal, OnInit, OnDestroy, isDevMode, NgZone } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import Lenis from '@studio-freight/lenis';
@@ -22,44 +22,48 @@ export class App implements OnInit, OnDestroy {
   isLightMode = false;
   isDevMode = isDevMode();
 
+  constructor(private ngZone: NgZone) {}
+
   ngOnInit() {
     this.initLenis();
   }
 
   initLenis() {
-    this.lenis = new Lenis({
-      lerp: 0.07,           // Honey-smooth
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 0.85, 
-      touchMultiplier: 2,
-    });
-
-    this.lenis.on('scroll', ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      this.lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-
-    // Section reveal
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          (e.target as HTMLElement).style.opacity = '1';
-          (e.target as HTMLElement).style.transform = 'translateY(0)';
-          io.unobserve(e.target);
-        }
+    this.ngZone.runOutsideAngular(() => {
+      this.lenis = new Lenis({
+        lerp: 0.07,           // Honey-smooth
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 0.85, 
+        touchMultiplier: 2,
       });
-    }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
 
-    document.querySelectorAll('.philosophy-para, .reveal-text').forEach(el => {
-      (el as HTMLElement).style.transition = `opacity 1.2s var(--ease-honey), transform 1.2s var(--ease-honey)`;
-      (el as HTMLElement).style.transform = 'translateY(40px)';
-      (el as HTMLElement).style.opacity = '0.08';
-      io.observe(el);
+      this.lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        this.lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+
+      // Section reveal
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            (e.target as HTMLElement).style.opacity = '1';
+            (e.target as HTMLElement).style.transform = 'translateY(0)';
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -60px 0px' });
+
+      document.querySelectorAll('.philosophy-para, .reveal-text').forEach(el => {
+        (el as HTMLElement).style.transition = `opacity 1.2s var(--ease-honey), transform 1.2s var(--ease-honey)`;
+        (el as HTMLElement).style.transform = 'translateY(40px)';
+        (el as HTMLElement).style.opacity = '0.08';
+        io.observe(el);
+      });
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, NgZone } from '@angular/core';
 import gsap from 'gsap';
 
 @Component({
@@ -16,9 +16,13 @@ export class HeroComponent implements AfterViewInit {
   @ViewChild('scrollIndicator') scrollIndicator!: ElementRef;
   @ViewChild('marqueeWrapper') marqueeWrapper!: ElementRef;
 
+  constructor(private ngZone: NgZone) {}
+
   ngAfterViewInit() {
-    this.initAnimations();
-    this.initMarquee();
+    this.ngZone.runOutsideAngular(() => {
+      this.initAnimations();
+      this.initMarquee();
+    });
   }
 
   initAnimations() {

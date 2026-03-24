@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, OnDestroy, NgZone } from '@angular/core';
 import gsap from 'gsap';
 
 @Component({
@@ -14,10 +14,14 @@ export class FooterComponent implements AfterViewInit, OnDestroy {
   currentTime: string = '';
   private clockInterval: ReturnType<typeof setInterval> | null = null;
 
+  constructor(private ngZone: NgZone) {}
+
   ngAfterViewInit() {
-    this.initMarquee();
-    this.initClock();
-    this.initReveal();
+    this.ngZone.runOutsideAngular(() => {
+      this.initMarquee();
+      this.initClock();
+      this.initReveal();
+    });
   }
 
   initClock() {

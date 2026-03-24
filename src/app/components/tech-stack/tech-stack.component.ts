@@ -2,6 +2,7 @@ import { Component, AfterViewInit } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CommonModule } from '@angular/common';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-tech-stack',
@@ -62,32 +63,36 @@ export class TechStackComponent implements AfterViewInit {
     }
   ];
 
+  constructor(private ngZone: NgZone) {}
+
   ngAfterViewInit() {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    setTimeout(() => {
-      const sections = document.querySelectorAll('.luxury-category-section');
+    this.ngZone.runOutsideAngular(() => {
+      gsap.registerPlugin(ScrollTrigger);
       
-      sections.forEach((sec) => {
-        const anchor = sec.querySelector('.sticky-category-header');
-        const rows = sec.querySelectorAll('.luxury-tool-row');
+      setTimeout(() => {
+        const sections = document.querySelectorAll('.luxury-category-section');
         
-        const tl = gsap.timeline({
-          scrollTrigger: { trigger: sec, start: 'top 85%' }
+        sections.forEach((sec) => {
+          const anchor = sec.querySelector('.sticky-category-header');
+          const rows = sec.querySelectorAll('.luxury-tool-row');
+          
+          const tl = gsap.timeline({
+            scrollTrigger: { trigger: sec, start: 'top 85%' }
+          });
+          
+          if (anchor) {
+            tl.fromTo(anchor, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' });
+          }
+          
+          tl.fromTo(rows,
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out' },
+            '-=0.5'
+          );
         });
         
-        if (anchor) {
-          tl.fromTo(anchor, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' });
-        }
-        
-        tl.fromTo(rows,
-          { y: 50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out' },
-          '-=0.5'
-        );
-      });
-      
-      ScrollTrigger.refresh();
-    }, 150);
+        ScrollTrigger.refresh();
+      }, 150);
+    });
   }
 }

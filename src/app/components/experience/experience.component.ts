@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, NgZone } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -27,28 +27,32 @@ export class ExperienceComponent implements AfterViewInit {
     }
   ];
 
+  constructor(private ngZone: NgZone) {}
+
   ngAfterViewInit() {
-    gsap.registerPlugin(ScrollTrigger);
-    
-    setTimeout(() => {
-      const items = this.expContainer.nativeElement.querySelectorAll('.exp-row');
+    this.ngZone.runOutsideAngular(() => {
+      gsap.registerPlugin(ScrollTrigger);
       
-      gsap.fromTo(items, 
-        { scale: 0.95, y: 40, opacity: 0 },
-        {
-          scrollTrigger: {
-            trigger: this.expContainer.nativeElement,
-            start: 'top 80%'
-          },
-          scale: 1,
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.2,
-          ease: 'power3.out'
-        }
-      );
-      ScrollTrigger.refresh();
-    }, 150);
+      setTimeout(() => {
+        const items = this.expContainer.nativeElement.querySelectorAll('.exp-row');
+        
+        gsap.fromTo(items, 
+          { scale: 0.95, y: 40, opacity: 0 },
+          {
+            scrollTrigger: {
+              trigger: this.expContainer.nativeElement,
+              start: 'top 80%'
+            },
+            scale: 1,
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power3.out'
+          }
+        );
+        ScrollTrigger.refresh();
+      }, 150);
+    });
   }
 }

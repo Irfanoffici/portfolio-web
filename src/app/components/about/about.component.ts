@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, NgZone } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -15,8 +15,12 @@ export class AboutComponent implements AfterViewInit {
   @ViewChild('aboutSection') aboutSection!: ElementRef;
   @ViewChildren('text') textBlocks!: QueryList<ElementRef>;
 
+  constructor(private ngZone: NgZone) {}
+
   ngAfterViewInit() {
-    this.initScrollReveal();
+    this.ngZone.runOutsideAngular(() => {
+      this.initScrollReveal();
+    });
   }
 
   initScrollReveal() {
