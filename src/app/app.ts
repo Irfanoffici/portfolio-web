@@ -1,4 +1,4 @@
-import { Component, signal, OnInit, OnDestroy, isDevMode, NgZone, ViewChild, ElementRef } from '@angular/core';
+import { Component, signal, OnInit, AfterViewInit, OnDestroy, isDevMode, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import Lenis from '@studio-freight/lenis';
@@ -14,7 +14,7 @@ gsap.registerPlugin(ScrollTrigger);
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App implements OnInit, OnDestroy {
+export class App implements OnInit, AfterViewInit, OnDestroy {
   protected readonly title = signal('angular-portfolio');
   
   lenis!: Lenis;
@@ -27,6 +27,9 @@ export class App implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.initLenis();
+  }
+
+  ngAfterViewInit() {
     this.initCustomCursor();
   }
 

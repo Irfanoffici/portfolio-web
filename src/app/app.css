@@ -35,7 +35,6 @@
 .global-logo img {
   height: 38px; width: auto;
   transition: transform .6s var(--ease-honey);
-  filter: brightness(0) invert(1);
   will-change: transform;
 }
 .global-logo:hover img { transform: scale(.9) rotate(-5deg); }

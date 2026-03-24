@@ -95,46 +95,39 @@ export class TechStackComponent implements AfterViewInit {
     });
   }
 
+  private xSetter!: Function;
+  private ySetter!: Function;
+
   onHoverTool(tool: any, event: MouseEvent) {
     this.hoveredTool = tool;
     this.marquees.forEach(m => m.pause());
     
-    // Jump to pointer immediately BEFORE showing
-    gsap.set(this.tooltipElement.nativeElement, {
-      x: event.clientX,
-      y: event.clientY,
-      opacity: 0,
-      scale: 0.5
-    });
+    // Create quick setters for performance
+    this.xSetter = gsap.quickSetter(this.tooltipElement.nativeElement, "x", "px");
+    this.ySetter = gsap.quickSetter(this.tooltipElement.nativeElement, "y", "px");
 
-    // Animate in
-    gsap.to(this.tooltipElement.nativeElement, {
-      opacity: 1,
-      scale: 1,
-      duration: 0.3,
-      ease: 'back.out(1.7)'
-    });
+    // Start instantly at exact pointer
+    this.xSetter(event.clientX + 15);
+    this.ySetter(event.clientY + 15);
 
-    this.onMoveTool(event);
+    // Fade in
+    gsap.fromTo(this.tooltipElement.nativeElement, 
+      { opacity: 0, scale: 0.8 },
+      { opacity: 1, scale: 1, duration: 0.2, ease: 'power2.out' }
+    );
   }
 
   onMoveTool(event: MouseEvent) {
-    if (!this.hoveredTool || !this.tooltipElement) return;
-    
-    // Low latency drag follow
-    gsap.to(this.tooltipElement.nativeElement, {
-      x: event.clientX + 15,
-      y: event.clientY + 15,
-      duration: 0.1,
-      ease: 'power2.out'
-    });
+    if (!this.hoveredTool || !this.xSetter) return;
+    // Perfect sync with mouse
+    this.xSetter(event.clientX + 15);
+    this.ySetter(event.clientY + 15);
   }
 
   onLeaveTool() {
     this.hoveredTool = null;
     this.marquees.forEach(m => m.play());
 
-    // Animate out
     gsap.to(this.tooltipElement.nativeElement, {
       opacity: 0,
       scale: 0.8,
