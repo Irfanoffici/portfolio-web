@@ -1,7 +1,7 @@
 .featured-work-section {
   background-color: var(--bg-color);
   overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 5%, transparent);
 }
 
 /* Ghost backdrop */
@@ -18,7 +18,7 @@
   line-height: 0.8;
   letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--text-color) 4%, transparent);
   text-transform: uppercase;
   display: block;
 }
@@ -68,7 +68,7 @@
 .label-line {
   flex: 1;
   height: 1px;
-  background: rgba(255,255,255,0.12);
+  background: color-mix(in srgb, var(--text-color) 12%, transparent);
 }
 
 @media (min-width: 1024px) {
@@ -99,12 +99,12 @@
 .fw-projects {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
 }
 
 .fw-row {
   padding: 4.5rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-color) 7.000000000000001%, transparent);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -164,7 +164,7 @@
   letter-spacing: -0.03em;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--text-color) 25%, transparent);
   text-transform: uppercase;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -215,7 +215,7 @@
 .fw-tag {
   font-size: 0.75rem;
   padding: 0.3rem 0.8rem;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid color-mix(in srgb, var(--text-color) 15%, transparent);
   border-radius: 20px;
   color: var(--text-muted);
   text-transform: uppercase;

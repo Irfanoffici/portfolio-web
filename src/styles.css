@@ -6,9 +6,16 @@
 :root {
   --bg-color:      #040404;
   --bg-alt:        #070707;
+  --bg-darker:     #020202;
+  --bg-lighter:    #060606;
+  --bg-glass:      rgba(4, 4, 4, 0.85);
   --text-color:    #f0f0f0;
   --text-muted:    #777777;
   --accent-color:  #ff3366;
+  
+  --bg-glow:       rgba(255, 51, 102, 0.04);
+  --bg-glow-white: rgba(255, 255, 255, 0.02);
+
   --cursor-size:   20px;
   /* Honey easing — single source of truth */
   --ease-honey:    cubic-bezier(0.16, 1, 0.3, 1);
@@ -20,6 +27,21 @@
   --section-gap:   15vh;
   --container-pad: 5vw;
 }
+
+body.light-theme {
+  --bg-color:      #fdfdfd;
+  --bg-alt:        #f4f4f4;
+  --bg-darker:     #f0f0f0;
+  --bg-lighter:    #ffffff;
+  --bg-glass:      rgba(255, 255, 255, 0.85);
+  --text-color:    #0a0a0a;
+  --text-muted:    #666666;
+  --accent-color:  #ff1a53; 
+
+  --bg-glow:       rgba(255, 26, 83, 0.06); 
+  --bg-glow-white: rgba(0, 0, 0, 0.02);     
+}
+
 
 /* ── Reset ── */
 *, *::before, *::after {

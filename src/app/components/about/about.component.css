@@ -3,7 +3,7 @@
   z-index: 5;
   background-color: var(--bg-color);
   overflow: hidden;
-  border-top: 1px solid rgba(255,255,255,0.04);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 4%, transparent);
 }
 
 /* ── Ghost backdrop ── */
@@ -22,7 +22,7 @@
   line-height: 0.75;
   letter-spacing: -0.06em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--text-color) 4%, transparent);
   text-transform: uppercase;
   display: block;
   text-align: right;
@@ -82,7 +82,7 @@
   font-weight: 900;
   text-transform: uppercase;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--text-color) 25%, transparent);
   letter-spacing: -0.03em;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: default;
@@ -118,7 +118,7 @@
   gap: 4rem;
   position: relative;
   z-index: 2;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
   padding-top: 5rem;
   margin-bottom: 5rem;
 }
@@ -194,11 +194,11 @@
   gap: 1rem;
   text-decoration: none;
   color: var(--text-color);
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid color-mix(in srgb, var(--text-color) 12%, transparent);
   border-radius: 2px;
   padding: 1.5rem 2.5rem;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  background: rgba(255,255,255,0.02);
+  background: color-mix(in srgb, var(--text-color) 2%, transparent);
   width: max-content;
 }
 
@@ -228,8 +228,8 @@
 .about-stats-strip {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  border-left: 1px solid rgba(255,255,255,0.08);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
+  border-left: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
   position: relative;
   z-index: 2;
 }
@@ -245,13 +245,13 @@
   flex-direction: column;
   gap: 0.5rem;
   padding: 3rem 2.5rem;
-  border-right: 1px solid rgba(255,255,255,0.08);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-right: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-color) 8%, transparent);
   transition: background 0.4s ease;
 }
 
 .stat-block:hover {
-  background: rgba(255,255,255,0.02);
+  background: color-mix(in srgb, var(--text-color) 2%, transparent);
 }
 
 .stat-num {

@@ -39,9 +39,15 @@
       <div class="nav-info">
         <span>Based in Chennai, India.</span>
         <span>Built on curiosity. Driven by craft.</span>
+      <!-- Socials / Theme -->
+      <div class="nav-socials interactive" style="display: flex; gap: 2rem; align-items: center;">
+        <a href="javascript:void(0)" (click)="toggleTheme()" style="color: var(--accent-color);">
+          {{ isLightMode ? 'DARK MODE' : 'LIGHT MODE' }}
+        </a>
+        <a href="https://github.com/Irfanoffici" target="_blank">GITHUB</a>
+        <a href="https://www.linkedin.com/in/mohammed-irfan-424a56262" target="_blank">LINKEDIN</a>
+        <a href="https://www.instagram.com/ir.fan_42/?igsh=eTBjY21hcmVkbHlh" target="_blank">INSTAGRAM</a>
       </div>
-      <div class="nav-socials">
-        <a href="https://github.com/Irfanoffici/" target="_blank" class="interactive">GO TO GITHUB</a>
       </div>
     </div>
     

@@ -8,8 +8,8 @@
   padding-top: 10vh;
   /* Atmospheric depth gradient */
   background:
-    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(255, 51, 102, 0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 80% at 90% 10%, rgba(255, 255, 255, 0.02) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 20% 50%, var(--bg-glow) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 90% 10%, var(--bg-glow-white) 0%, transparent 55%),
     var(--bg-color);
 }
 
@@ -74,7 +74,7 @@
 .scroll-line {
   width: 1px;
   height: 60px;
-  background: rgba(255, 255, 255, 0.15);
+  background: color-mix(in srgb, var(--text-color) 15%, transparent);
   position: relative;
   overflow: hidden;
   border-radius: 2px;

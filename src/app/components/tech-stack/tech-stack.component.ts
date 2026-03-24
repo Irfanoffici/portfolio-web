@@ -39,14 +39,14 @@ export class TechStackComponent implements AfterViewInit {
       ]
     },
     {
-      category: 'AI & Intelligence',
-      theme: 'ai',
-      tagline: 'When code learns to think.',
+      category: 'Advanced Engineering',
+      theme: 'engineering',
+      tagline: 'Code that speaks for itself.',
       decorator: '◉',
       tools: [
-        { name: 'Language Models & Gen-AI', extendedDesc: 'Pushing boundaries by embedding sophisticated AI models through APIs. Enabling generative capabilities, automated reasoning, and creative integrations inside SPAs.' },
-        { name: 'Prompt Engineering', extendedDesc: 'Manipulating context windows and carefully structuring zero/few-shot prompts. Directing AI logic to return extremely specific, tailored constraints without hallucinations.' },
-        { name: 'Vibe Coding', extendedDesc: 'The vanguard of modern dev. Leaning intensely into AI-assisted programming to construct immense logic architectures rapidly—coding at the speed of thought.' }
+        { name: 'Manual Code Execution', extendedDesc: 'Writing explicit, optimized logic rather than relying on AI scaffolding. Prioritizing predictable, high-performance execution over rapid generation.' },
+        { name: 'System Security', extendedDesc: 'Implementing robust cryptographic standards, rigorous data validation, and inherently preventing advanced web vulnerabilities at the architectural level.' },
+        { name: 'Memory Management', extendedDesc: 'Optimizing client-side bundles and minimizing render cycles strictly through careful, hand-tuned application state observation.' }
       ]
     },
     {

@@ -1,6 +1,6 @@
 .services-section {
   background-color: var(--bg-color);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 5%, transparent);
 }
 
 .section-title {
@@ -19,7 +19,7 @@
   grid-template-columns: 80px 1fr 50px;
   align-items: flex-start;
   padding: 3rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
   transition: all 0.4s ease;
   position: relative;
   cursor: pointer;
@@ -32,7 +32,7 @@
   left: 0;
   width: 0;
   height: 100%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.02) 0%, transparent 100%);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--text-color) 2%, transparent) 0%, transparent 100%);
   transition: width 0.4s ease;
   z-index: 0;
 }
@@ -111,7 +111,7 @@
 .service-details-text {
   font-size: 1.05rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.65);
+  color: color-mix(in srgb, var(--text-color) 65%, transparent);
   max-width: 800px;
   padding-top: 1.5rem;
 }

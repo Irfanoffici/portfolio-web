@@ -1,5 +1,7 @@
 .experience-section {
-  background-color: #060606;
+  position: relative;
+  background-color: var(--bg-lighter);
+  padding: 15vh 0;
   overflow: hidden;
 }
 
@@ -17,7 +19,7 @@
   line-height: 0.8;
   letter-spacing: -0.04em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.04);
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--text-color) 4%, transparent);
   text-transform: uppercase;
   display: block;
 }
@@ -67,7 +69,7 @@
 .label-line {
   flex: 1;
   height: 1px;
-  background: rgba(255,255,255,0.12);
+  background: color-mix(in srgb, var(--text-color) 12%, transparent);
 }
 
 @media (min-width: 1024px) {
@@ -83,12 +85,12 @@
 .exp-timeline {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid color-mix(in srgb, var(--text-color) 10%, transparent);
 }
 
 .exp-row {
   padding: 4rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
+  border-bottom: 1px solid color-mix(in srgb, var(--text-color) 7.000000000000001%, transparent);
   cursor: default;
   display: flex;
   flex-direction: column;
@@ -134,7 +136,7 @@
   letter-spacing: -0.02em;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.3);
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--text-color) 30%, transparent);
   text-transform: uppercase;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }

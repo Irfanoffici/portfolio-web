@@ -19,6 +19,7 @@ export class App implements OnInit, OnDestroy {
   
   lenis!: Lenis;
   isNavOpen = false;
+  isLightMode = false;
 
   ngOnInit() {
     this.initLenis();
@@ -77,6 +78,15 @@ export class App implements OnInit, OnDestroy {
       gsap.to('.nav-footer', { opacity: 0, y: 20, duration: 0.4, ease: 'power2.in' });
       gsap.to('.nav-bg', { opacity: 0, duration: 0.6, ease: 'power2.in', delay: 0.2 });
       gsap.to('.nav-overlay', { autoAlpha: 0, duration: 0.1, delay: 0.8 });
+    }
+  }
+
+  toggleTheme() {
+    this.isLightMode = !this.isLightMode;
+    if (this.isLightMode) {
+      document.body.classList.add('light-theme');
+    } else {
+      document.body.classList.remove('light-theme');
     }
   }
 

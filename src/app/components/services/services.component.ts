@@ -14,9 +14,9 @@ export class ServicesComponent implements AfterViewInit {
 
   services = [
     { 
-      name: 'Vibe Coding & Rapid Prototyping', 
-      desc: 'Turning complex ideas into functional products at lightning speed using an intuitive, AI-accelerated approach.',
-      extendedDesc: 'By heavily utilizing AI agents and zero-shot generative models during the initial conception phase, I drastically reduce the boilerplate setup time. This allows me to immediately focus on complex business logic, architectural resilience, and user experience—transforming raw concepts into fully iterative prototypes within days.'
+      name: 'Custom Software Architecture', 
+      desc: 'Architecting resilient, scalable platforms from the ground up using strictly typed, hand-crafted codebases.',
+      extendedDesc: 'I prioritize foundational software engineering over automated generation. By writing robust, maintainable logic manually, I ensure complete control over the architecture. This guarantees that the final product scales seamlessly without the unpredictable overhead or rigid constraints of AI-generated scaffolding.'
     },
     { 
       name: 'Full-Stack Architecture', 
@@ -29,9 +29,9 @@ export class ServicesComponent implements AfterViewInit {
       extendedDesc: 'I orchestrate systematic quality assurance pipelines that simulate edge-case network constraints and extreme user loads. This involves meticulously tracking runtime exceptions, optimizing render cycles in frameworks like React Native, and ensuring end-users never experience a crash during critical tasks.'
     },
     { 
-      name: 'Gen-AI & Prompt Engineering', 
-      desc: 'Crafting advanced conversational logic and integrating state-of-the-art language models directly into ecosystems.',
-      extendedDesc: 'I do not just call APIs; I engineer context. By designing sophisticated prompt chains, dynamically adjusting system instructions, and utilizing function calling, I forcefully constrain AI behavior to guarantee predictable, context-aware, and highly creative features within native applications.'
+      name: 'Complex API & System Design', 
+      desc: 'Engineering sophisticated backend networks and integrating dynamic third-party ecosystems with absolute precision.',
+      extendedDesc: 'Instead of blindly relying on automated tools, I meticulously structure database relationships, secure endpoints, and optimize continuous data flow. This manual precision allows for enterprise-grade reliability and creates flexible ecosystems tailored exactly to complex business logic.'
     },
     { 
       name: 'Business Analysis & Strategy', 
