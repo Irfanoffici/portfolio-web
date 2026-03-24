@@ -44,7 +44,7 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
     this.ngZone.runOutsideAngular(() => {
       window.addEventListener('mousemove', (e) => {
         // Move global tooltip if it exists and is active
-        if (this.globalTooltip && this.tooltipService.hoveredTool()) {
+        if (this.globalTooltip) {
           gsap.to(this.globalTooltip.nativeElement, {
             x: e.clientX + 10,
             y: e.clientY + 10,
