@@ -11,11 +11,12 @@
   margin-bottom: -8rem;
   pointer-events: none;
   user-select: none;
+  overflow: hidden; /* prevent ghost text overflowing on small screens */
 }
 
 .ghost-label {
   font-family: 'Outfit', sans-serif;
-  font-size: clamp(6rem, 25vw, 25rem);
+  font-size: clamp(5rem, 20vw, 25rem);
   font-weight: 900;
   line-height: 0.8;
   letter-spacing: -0.04em;
@@ -101,9 +102,7 @@
 }
 
 @media (min-width: 1024px) {
-  .edu-row:hover {
-    padding-left: 2rem;
-  }
+  .edu-row:hover { padding-left: 2rem; }
 }
 
 .edu-row-top {
@@ -118,10 +117,7 @@
   font-weight: 300;
   transition: color 0.4s ease;
 }
-
-.edu-row:hover .edu-index {
-  color: var(--accent-color);
-}
+.edu-row:hover .edu-index { color: var(--accent-color); }
 
 .edu-date {
   font-size: 0.78rem;
@@ -136,11 +132,10 @@
   letter-spacing: -0.03em;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1px color-mix(in srgb, var(--text-color) 28.000000000000004%, transparent);
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--text-color) 28%, transparent);
   text-transform: uppercase;
   transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .edu-row:hover .edu-school-title {
   color: var(--text-color);
   -webkit-text-stroke: 1px transparent;
@@ -153,14 +148,12 @@
   gap: 1.5rem;
   flex-wrap: wrap;
 }
-
 .edu-degree-text {
   font-size: 1.05rem;
   font-weight: 400;
   color: var(--accent-color);
   white-space: nowrap;
 }
-
 .edu-degree-bar {
   height: 1px;
   flex: 1;
@@ -168,10 +161,7 @@
   background: rgba(255, 51, 102, 0.25);
   transition: background 0.5s ease;
 }
-
-.edu-row:hover .edu-degree-bar {
-  background: var(--accent-color);
-}
+.edu-row:hover .edu-degree-bar { background: var(--accent-color); }
 
 /* Reveal paragraph */
 .edu-details-reveal {
@@ -182,18 +172,11 @@
 }
 
 @media (min-width: 1024px) {
-  .edu-details-reveal {
-    grid-template-rows: 0fr;
-  }
-  .edu-row:hover .edu-details-reveal {
-    grid-template-rows: 1fr;
-  }
+  .edu-details-reveal { grid-template-rows: 0fr; }
+  .edu-row:hover .edu-details-reveal { grid-template-rows: 1fr; }
 }
 
-.edu-details-inner {
-  overflow: hidden;
-}
-
+.edu-details-inner { overflow: hidden; }
 .edu-details-inner p {
   font-size: 1.1rem;
   line-height: 1.7;
@@ -201,4 +184,59 @@
   font-weight: 300;
   max-width: 700px;
   padding-top: 0.5rem;
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 1280px
+══════════════════════════════════════════════════════ */
+@media (max-width: 1280px) {
+  .edu-school-title { font-size: clamp(2rem, 5vw, 4rem); }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 1024px (tablet)
+══════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .edu-luxury-grid { gap: 2.5rem; }
+  .edu-school-title { font-size: clamp(2rem, 6vw, 4rem); }
+  .edu-row { padding: 3.5rem 0; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 768px
+══════════════════════════════════════════════════════ */
+@media (max-width: 768px) {
+  .education-section { padding: 8vh 0; }
+  .edu-ghost-header { margin-bottom: -4rem; }
+  .ghost-label { font-size: clamp(4rem, 22vw, 10rem); }
+  .edu-row { padding: 3rem 0; gap: 1.2rem; }
+  .edu-school-title { font-size: clamp(1.8rem, 8vw, 3.5rem); }
+  .edu-degree-text { font-size: 0.95rem; white-space: normal; }
+  .edu-details-inner p { font-size: 1rem; max-width: 100%; }
+  .edu-luxury-grid { gap: 2rem; }
+  .vertical-label { font-size: 0.72rem; letter-spacing: 0.15em; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 480px
+══════════════════════════════════════════════════════ */
+@media (max-width: 480px) {
+  .edu-ghost-header { margin-bottom: -2.5rem; }
+  .ghost-label { font-size: clamp(3rem, 22vw, 7rem); }
+  .edu-school-title { font-size: clamp(1.5rem, 9vw, 2.8rem); }
+  .edu-row { padding: 2.5rem 0; gap: 1rem; }
+  .edu-index { font-size: 1rem; }
+  .edu-date { font-size: 0.7rem; }
+  .edu-degree-text { font-size: 0.85rem; }
+  .edu-details-inner p { font-size: 0.9rem; }
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — 375px
+══════════════════════════════════════════════════════ */
+@media (max-width: 375px) {
+  .edu-school-title { font-size: clamp(1.3rem, 10vw, 2.2rem); }
+  .edu-row { padding: 2rem 0; }
+  .edu-ghost-header { margin-bottom: -2rem; }
+  .ghost-label { font-size: clamp(2.5rem, 22vw, 6rem); }
 }
