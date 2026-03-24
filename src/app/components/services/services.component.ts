@@ -1,11 +1,12 @@
 import { Component, AfterViewInit, ElementRef, ViewChild, NgZone } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css'
 })
@@ -49,16 +50,16 @@ export class ServicesComponent implements AfterViewInit {
       setTimeout(() => {
         const items = this.servicesList.nativeElement.children;
         gsap.fromTo(items, 
-          { y: 50, opacity: 0 },
+          { x: 50, opacity: 0 },
           {
             scrollTrigger: {
               trigger: this.servicesList.nativeElement,
               start: 'top 85%',
             },
-            y: 0,
+            x: 0,
             opacity: 1,
-            duration: 0.8,
-            stagger: 0.1,
+            duration: 1,
+            stagger: 0.15,
             ease: 'power3.out'
           }
         );

@@ -1,8 +1,7 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, NgZone } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { CommonModule } from '@angular/common';
-import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-tech-stack',
@@ -12,14 +11,12 @@ import { NgZone } from '@angular/core';
   styleUrl: './tech-stack.component.css'
 })
 export class TechStackComponent implements AfterViewInit {
-  activeCategory: number = -1;
+  @ViewChildren('marqueeWrapper') marqueeWrappers!: QueryList<ElementRef>;
+  @ViewChild('tooltipElement') tooltipElement!: ElementRef;
 
   techCategories = [
     {
       category: 'Frontend Engineering',
-      theme: 'frontend',
-      tagline: 'Where logic becomes experience.',
-      decorator: '⬡',
       tools: [
         { name: 'Angular Framework', extendedDesc: 'A powerful structural framework for dynamic web apps. I use Angular to rapidly build highly interactive, component-style platforms, managing complex state and routing for seamlessly polished user experiences.' },
         { name: 'React Ecosystem', extendedDesc: 'My go-to for declarative UI development. React enables me to implement sophisticated frontends with high reusability, leveraging Hooks for concise state management and dynamic DOM updates.' },
@@ -29,9 +26,6 @@ export class TechStackComponent implements AfterViewInit {
     },
     {
       category: 'Backend & Cloud',
-      theme: 'backend',
-      tagline: 'The invisible architecture that scales.',
-      decorator: '◈',
       tools: [
         { name: 'Node.js Architectures', extendedDesc: 'Utilizing non-blocking I/O models to construct extremely rapid, lightweight, and efficient backend architectures handling intense data-throughput operations.' },
         { name: 'AWS & Firebase', extendedDesc: 'Deploying robust cloud ecosystems. Orchestrating scalable data storage and serverless computing functions to manage unpredictable traffic securely while expediting product iterations in real-time.' },
@@ -41,9 +35,6 @@ export class TechStackComponent implements AfterViewInit {
     },
     {
       category: 'Advanced Engineering',
-      theme: 'engineering',
-      tagline: 'Code that speaks for itself.',
-      decorator: '◉',
       tools: [
         { name: 'Manual Code Execution', extendedDesc: 'Writing explicit, optimized logic rather than relying on AI scaffolding. Prioritizing predictable, high-performance execution over rapid generation.' },
         { name: 'System Security', extendedDesc: 'Implementing robust cryptographic standards, rigorous data validation, and inherently preventing advanced web vulnerabilities at the architectural level.' },
@@ -52,9 +43,6 @@ export class TechStackComponent implements AfterViewInit {
     },
     {
       category: 'Core Fundamentals',
-      theme: 'core',
-      tagline: 'The bedrock of everything I build.',
-      decorator: '▣',
       tools: [
         { name: 'Software Architecture', extendedDesc: 'Architecting holistic structural blueprints. Encompassing meticulous planning, test-driven protocols, version history, and resilient cloud integration.' },
         { name: 'OS Environments (Linux/Windows)', extendedDesc: 'Fluent terminal mastery. Using secure shell interactions and bash scripting to manage server health, container routing, and local ecosystem optimization natively.' },
@@ -63,6 +51,9 @@ export class TechStackComponent implements AfterViewInit {
     }
   ];
 
+  hoveredTool: any = null;
+  marquees: gsap.core.Tween[] = [];
+
   constructor(private ngZone: NgZone) {}
 
   ngAfterViewInit() {
@@ -70,29 +61,51 @@ export class TechStackComponent implements AfterViewInit {
       gsap.registerPlugin(ScrollTrigger);
       
       setTimeout(() => {
-        const sections = document.querySelectorAll('.luxury-category-section');
-        
-        sections.forEach((sec) => {
-          const anchor = sec.querySelector('.sticky-category-header');
-          const rows = sec.querySelectorAll('.luxury-tool-row');
+        this.marqueeWrappers.forEach((wrapper, index) => {
+          const track = wrapper.nativeElement.querySelector('.ars-marquee-track');
           
-          const tl = gsap.timeline({
-            scrollTrigger: { trigger: sec, start: 'top 85%' }
-          });
+          // Elements in marquee content
+          // Animate by shifting the track by -50% (which moves exactly the width of one list block)
           
-          if (anchor) {
-            tl.fromTo(anchor, { x: -30, opacity: 0 }, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' });
+          // Alternate starting positions and directions for brutalist chaos
+          if (index % 2 === 0) {
+            const tween = gsap.fromTo(track, 
+              { xPercent: 0 }, 
+              { xPercent: -50, duration: 40, ease: 'none', repeat: -1 }
+            );
+            this.marquees.push(tween);
+          } else {
+            const tween = gsap.fromTo(track, 
+              { xPercent: -50 }, 
+              { xPercent: 0, duration: 35, ease: 'none', repeat: -1 }
+            );
+            this.marquees.push(tween);
           }
-          
-          tl.fromTo(rows,
-            { y: 50, opacity: 0 },
-            { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power3.out' },
-            '-=0.5'
-          );
         });
-        
-        ScrollTrigger.refresh();
-      }, 150);
+      }, 200);
     });
+  }
+
+  onHoverTool(tool: any, event: MouseEvent) {
+    this.hoveredTool = tool;
+    this.marquees.forEach(m => m.pause());
+    this.onMoveTool(event);
+  }
+
+  onMoveTool(event: MouseEvent) {
+    if (!this.hoveredTool || !this.tooltipElement) return;
+    
+    // Smoothly track cursor
+    gsap.to(this.tooltipElement.nativeElement, {
+      x: event.clientX + 30,
+      y: event.clientY + 30,
+      duration: 0.3,
+      ease: 'power3.out'
+    });
+  }
+
+  onLeaveTool() {
+    this.hoveredTool = null;
+    this.marquees.forEach(m => m.play());
   }
 }

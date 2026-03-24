@@ -22,7 +22,7 @@ export class ExperienceComponent implements AfterViewInit {
     {
       company: 'Zyosys Technologist',
       role: 'Business Analyst',
-      date: '2025 - 2026',
+      date: 'Mar 2026 - Present',
       desc: 'Bridging the gap between business needs and technological execution. Analyzing requirements and shaping products.'
     }
   ];
@@ -34,23 +34,23 @@ export class ExperienceComponent implements AfterViewInit {
       gsap.registerPlugin(ScrollTrigger);
       
       setTimeout(() => {
-        const items = this.expContainer.nativeElement.querySelectorAll('.exp-row');
+        const blocks = this.expContainer.nativeElement.querySelectorAll('.exp2-block');
         
-        gsap.fromTo(items, 
-          { scale: 0.95, y: 40, opacity: 0 },
+        gsap.fromTo(blocks,
+          { x: -60, opacity: 0 },
           {
             scrollTrigger: {
               trigger: this.expContainer.nativeElement,
-              start: 'top 80%'
+              start: 'top 85%'
             },
-            scale: 1,
-            y: 0,
+            x: 0,
             opacity: 1,
-            duration: 1,
+            duration: 1.1,
             stagger: 0.2,
             ease: 'power3.out'
           }
         );
+
         ScrollTrigger.refresh();
       }, 150);
     });

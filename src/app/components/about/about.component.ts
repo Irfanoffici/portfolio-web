@@ -1,8 +1,6 @@
-import { Component, AfterViewInit, ElementRef, ViewChild, ViewChildren, QueryList, NgZone } from '@angular/core';
+import { Component, AfterViewInit, ElementRef, ViewChild, NgZone } from '@angular/core';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-
-gsap.registerPlugin(ScrollTrigger);
 
 @Component({
   selector: 'app-about',
@@ -13,32 +11,62 @@ gsap.registerPlugin(ScrollTrigger);
 })
 export class AboutComponent implements AfterViewInit {
   @ViewChild('aboutSection') aboutSection!: ElementRef;
-  @ViewChildren('text') textBlocks!: QueryList<ElementRef>;
+  @ViewChild('portraitWrap') portraitWrap!: ElementRef;
 
   constructor(private ngZone: NgZone) {}
 
   ngAfterViewInit() {
     this.ngZone.runOutsideAngular(() => {
-      this.initScrollReveal();
-    });
-  }
+      gsap.registerPlugin(ScrollTrigger);
 
-  initScrollReveal() {
-    // Parallax or color reveal on scroll
-    const textElements = document.querySelectorAll('.reveal-text');
-    
-    textElements.forEach((el) => {
-      gsap.to(el, {
-        scrollTrigger: {
-          trigger: el,
-          start: 'top 80%',
-          end: 'bottom 50%',
-          scrub: 1,
-        },
-        color: 'var(--text-color)',
-        opacity: 1,
-        ease: 'none'
+      // Paragraph GSAP Scrub Reveal
+      const textElements = document.querySelectorAll('.reveal-text');
+      textElements.forEach((el) => {
+        gsap.to(el, {
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            end: 'bottom 60%',
+            scrub: 1,
+          },
+          color: 'var(--text-color)',
+          ease: 'none'
+        });
       });
+
+      // Manifest staggering entrance
+      const manifestLines = document.querySelectorAll('.mani-line');
+      gsap.fromTo(manifestLines, 
+        { y: 50, opacity: 0 },
+        {
+          scrollTrigger: {
+            trigger: '.abt-manifesto',
+            start: 'top 80%'
+          },
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.2,
+          ease: 'power3.out'
+        }
+      );
+
+      // Portrait Image Parallax
+      if (this.portraitWrap) {
+        gsap.fromTo(this.portraitWrap.nativeElement,
+          { y: -30 },
+          {
+            scrollTrigger: {
+              trigger: this.portraitWrap.nativeElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true
+            },
+            y: 30,
+            ease: 'none'
+          }
+        );
+      }
     });
   }
 }

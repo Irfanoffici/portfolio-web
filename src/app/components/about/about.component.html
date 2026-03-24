@@ -1,88 +1,77 @@
-<section class="about-section section-padding" id="about" #aboutSection>
-  <div class="container">
+<section class="abt-section section-padding" id="about" #aboutSection>
+  <div class="container abt-container">
 
-    <!-- GHOST BACKDROP — massive word -->
-    <div class="about-ghost-header" aria-hidden="true">
-      <span class="ghost-label">ME</span>
+    <!-- Ghost backdrop -->
+    <div class="abt-ghost-bg" aria-hidden="true">
+      <span class="abt-hollow-huge">ME</span>
     </div>
 
-    <!-- MANIFESTO BLOCK — full width editorial -->
-    <div class="manifesto-block">
-      <div class="manifesto-top-row">
-        <span class="manifesto-label">Brief Introduction</span>
-        <span class="manifesto-index text-muted">01 / 03</span>
-      </div>
-
-      <!-- Radical typographic statement -->
-      <div class="manifesto-statement">
-        <h2 class="manifesto-line">
-          <span class="manifesto-outline">I turn ideas</span>
-        </h2>
-        <h2 class="manifesto-line manifesto-indent">
-          <span class="manifesto-solid">into realities</span>
-        </h2>
-        <h2 class="manifesto-line manifesto-indent-more">
-          <span class="manifesto-outline">people can</span>
-        </h2>
-        <h2 class="manifesto-line">
-          <em class="manifesto-italic">see, use &amp; touch.</em>
-        </h2>
-      </div>
+    <!-- Top editorial line -->
+    <div class="abt-top-meta">
+      <span class="abt-meta-label">BRIEF INTRODUCTION</span>
+      <span class="abt-meta-progress text-muted">01 / 03</span>
     </div>
 
-    <!-- PHILOSOPHY GRID — 3 col text + subtle image -->
-    <div class="about-philosophy-grid">
+    <!-- The Manifesto -->
+    <div class="abt-manifesto">
+      <h2 class="mani-line"><span class="mani-hollow">I TURN IDEAS</span></h2>
+      <h2 class="mani-line mani-indent-1"><span class="mani-solid">INTO REALITIES</span></h2>
+      <h2 class="mani-line mani-indent-2"><span class="mani-hollow">PEOPLE CAN</span></h2>
+      <h2 class="mani-line mani-indent-3"><em class="mani-italic theme-color">see, use & touch.</em></h2>
+    </div>
 
-      <!-- Column 1: core text -->
-      <div class="philosophy-col philosophy-col--main">
-        <p class="reveal-text philosophy-para">
+    <!-- Philosophy & Image Grid -->
+    <div class="abt-philosophy-grid">
+      
+      <!-- Text side -->
+      <div class="abt-text-col">
+        <p class="abt-para reveal-text">
           I'm a curious and creative student with a strong interest in technology, systems, and structured thinking — I enjoy breaking complex ideas into clear frameworks and understanding how things work beneath the surface.
         </p>
-        <p class="reveal-text philosophy-para">
+        <p class="abt-para reveal-text">
           I'm naturally drawn to problem-solving, pattern analysis, and approaching challenges from unconventional angles. I like turning thoughts into organized plans and constantly improving the way I think and learn.
         </p>
-      </div>
 
-      <!-- Middle Column: Portrait / Signature Graphic -->
-      <div class="philosophy-col philosophy-col--image">
-        <div class="subtle-image-wrap">
-          <img loading="lazy" decoding="async" src="assets/images/portrait-suit.png" alt="Mohammed Irfan Portrait" class="subtle-portrait dark-portrait">
-          <img loading="lazy" decoding="async" src="assets/images/portrait-formal.jpg" alt="Mohammed Irfan Portrait" class="subtle-portrait light-portrait">
+        <!-- CTA & Focus inside text col for better flow -->
+        <div class="abt-focus-box">
+          <p class="abt-para text-muted">
+            My focus is on growth, innovation, and building a path that stands out — while staying purposeful and impactful.
+          </p>
+          <a href="mailto:irfanofficial786@gmail.com" class="abt-cta-btn interactive">
+            <span>START A CONVERSATION</span>
+            <svg class="abt-cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
         </div>
       </div>
 
-      <!-- Column 3: focus paragraph -->
-      <div class="philosophy-col philosophy-col--focus">
-        <p class="reveal-text philosophy-para">
-          My focus is on growth, innovation, and building a path that stands out — while staying purposeful and impactful.
-        </p>
-        <a href="mailto:irfanofficial786@gmail.com" class="about-cta interactive">
-          <span class="about-cta-text">Start a conversation</span>
-          <svg class="about-cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M7 17L17 7M17 7H7M17 7v10"/>
-          </svg>
-        </a>
+      <!-- Image side -->
+      <div class="abt-image-col">
+        <div class="abt-image-wrapper" #portraitWrap>
+          <img loading="lazy" decoding="async" src="assets/images/portrait-suit.png" alt="Mohammed Irfan Portrait" class="abt-portrait dark-portrait">
+          <!-- Only show light portrait in light theme via CSS -->
+          <img loading="lazy" decoding="async" src="assets/images/portrait-suit.png" alt="Mohammed Irfan Portrait" class="abt-portrait light-portrait" style="display: none;">
+        </div>
       </div>
-
+      
     </div>
 
-    <!-- STATS STRIP — horizontal -->
-    <div class="about-stats-strip">
-      <div class="stat-block">
-        <span class="stat-num">2+</span>
-        <span class="stat-label">Years of building</span>
+    <!-- Brutalist Stats -->
+    <div class="abt-stats-matrix">
+      <div class="abt-stat-box stat-hover">
+        <span class="abt-stat-huge">2+</span>
+        <span class="abt-stat-sub text-muted">YEARS OF BUILDING</span>
       </div>
-      <div class="stat-block">
-        <span class="stat-num">2</span>
-        <span class="stat-label">Live contributions</span>
+      <div class="abt-stat-box stat-hover">
+        <span class="abt-stat-huge">2</span>
+        <span class="abt-stat-sub text-muted">LIVE CONTRIBUTIONS</span>
       </div>
-      <div class="stat-block">
-        <span class="stat-num">AI/ML</span>
-        <span class="stat-label">CSE — MEC, B.E</span>
+      <div class="abt-stat-box stat-hover">
+        <span class="abt-stat-huge">AI/ML</span>
+        <span class="abt-stat-sub text-muted">CSE — MEC, B.E</span>
       </div>
-      <div class="stat-block">
-        <span class="stat-num">∞</span>
-        <span class="stat-label">Problems worth solving</span>
+      <div class="abt-stat-box stat-hover">
+        <span class="abt-stat-huge">∞</span>
+        <span class="abt-stat-sub text-muted">PROBLEMS WORTH SOLVING</span>
       </div>
     </div>
 

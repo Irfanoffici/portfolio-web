@@ -10,7 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
   styleUrl: './featured-work.component.css'
 })
 export class FeaturedWorkComponent implements AfterViewInit {
-  @ViewChild('workContainer') workContainer!: ElementRef;
+  @ViewChild('fwContainer') fwContainer!: ElementRef;
 
   projects = [
     {
@@ -35,21 +35,21 @@ export class FeaturedWorkComponent implements AfterViewInit {
     this.ngZone.runOutsideAngular(() => {
       gsap.registerPlugin(ScrollTrigger);
 
-      const cards = this.workContainer.nativeElement.querySelectorAll('.fw-row');
+      const items = this.fwContainer.nativeElement.querySelectorAll('.fw-monolithic-item');
       
-      gsap.fromTo(cards, 
-        { scale: 0.9, opacity: 0, y: 50 },
+      gsap.fromTo(items, 
+        { scale: 0.98, opacity: 0, y: 70 },
         {
           scrollTrigger: {
-            trigger: this.workContainer.nativeElement,
-            start: 'top 80%',
+            trigger: this.fwContainer.nativeElement,
+            start: 'top 85%',
           },
           scale: 1,
           opacity: 1,
           y: 0,
-          duration: 0.8,
-          stagger: 0.2,
-          ease: 'power3.out'
+          duration: 1,
+          stagger: 0.3,
+          ease: 'power4.out'
         }
       );
     });

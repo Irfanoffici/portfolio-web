@@ -1,41 +1,45 @@
-<section class="tech-stack-section section-padding" id="arsenal">
-  <div class="container relative">
-    
-    <div class="luxury-main-header">
-      <h2 class="ultra-massive-text">ARSENAL</h2>
-    </div>
+<section class="arsenal-section section-padding" id="arsenal">
+  <div class="arsenal-header">
+    <h2 class="arsenal-title hollow-text">ARSENAL</h2>
+  </div>
 
-    <div class="luxury-stack-container">
-      @for (cat of techCategories; track cat.category; let i = $index) {
-        
-        <div class="luxury-category-section cat--{{ cat.theme }}">
-          <!-- Sticky left anchor — unique per category -->
-          <div class="sticky-category-header">
-            <div class="cat-anchor-top">
-              <span class="cat-decorator">{{ cat.decorator }}</span>
-              <span class="category-index">0{{ i + 1 }}</span>
-            </div>
-            <h3 class="category-vertical-title">{{ cat.category }}</h3>
-            <p class="cat-tagline">{{ cat.tagline }}</p>
-          </div>
-          
-          <!-- Tool rows -->
-          <div class="category-tools-list border-top">
-            @for (tool of cat.tools; track tool.name) {
-              <div class="luxury-tool-row interactive">
-                <h2 class="massive-tool-name">{{ tool.name }}</h2>
-                <div class="tool-hover-grid">
-                  <div class="tool-hover-inner">
-                    <p>{{ tool.extendedDesc }}</p>
+  <div class="arsenal-categories">
+    @for (cat of techCategories; track cat.category; let i = $index) {
+      <div class="arsenal-cat-row">
+        <!-- Category label -->
+        <div class="arsenal-cat-meta">
+          <span class="ars-cat-idx">0{{ i + 1 }}</span>
+          <h3 class="ars-cat-name">{{ cat.category }}</h3>
+        </div>
+
+        <!-- Marquee container -->
+        <div class="ars-marquee-wrapper" #marqueeWrapper>
+          <div class="ars-marquee-track">
+            <!-- Double the tools for infinite loop effect -->
+            @for (duplicate of [1, 2]; track duplicate) {
+              <div class="ars-marquee-content">
+                @for (tool of cat.tools; track tool.name) {
+                  <div class="ars-tool-item interactive"
+                       (mouseenter)="onHoverTool(tool, $event)"
+                       (mousemove)="onMoveTool($event)"
+                       (mouseleave)="onLeaveTool()">
+                    <span class="ars-tool-name">{{ tool.name }}</span>
+                    <span class="ars-separator"> / </span>
                   </div>
-                </div>
+                }
               </div>
             }
           </div>
         </div>
+      </div>
+    }
+  </div>
 
-      }
+  <!-- Custom fixed tooltip that follows cursor -->
+  <div class="ars-tooltip" #tooltipElement [class.visible]="hoveredTool">
+    <div class="ars-tt-inner" *ngIf="hoveredTool">
+      <h4>{{ hoveredTool.name }}</h4>
+      <p>{{ hoveredTool.extendedDesc }}</p>
     </div>
-
   </div>
 </section>

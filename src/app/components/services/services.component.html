@@ -1,25 +1,34 @@
-<section class="services-section section-padding">
-  <div class="container">
-    <div class="section-header">
-      <h2 class="text-uppercase section-title">What I do best?</h2>
+<section class="svc-brutalist-section section-padding" id="services">
+  <div class="container container-flex">
+
+    <!-- Left massive rotating/sticky label -->
+    <div class="svc-sticky-bar">
+      <h2 class="svc-massive-label hollow-text">WHAT I DO<br/>BEST.</h2>
     </div>
-    
-    <div class="services-list" #servicesList>
+
+    <!-- Right accordion list -->
+    <div class="svc-accordion-list" #servicesList>
       @for (s of services; track s.name; let i = $index) {
-        <div class="service-item interactive">
-          <div class="service-number text-muted">0{{ i + 1 }}.</div>
-          <div class="service-info">
-            <h3 class="service-name">{{ s.name }}</h3>
-            <div class="service-desc-short">{{ s.desc }}</div>
-            <div class="service-details-grid">
-              <div class="service-details-inner"><p class="service-details-text">{{ s.extendedDesc }}</p></div>
+        <div class="svc-item interactive">
+          
+          <div class="svc-item-header">
+            <span class="svc-number text-muted">0{{ i + 1 }}</span>
+            <h3 class="svc-name">{{ s.name }}</h3>
+            <div class="svc-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
             </div>
           </div>
-          <div class="service-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+
+          <div class="svc-item-body">
+            <div class="svc-body-inner">
+              <p class="svc-short-desc text-muted">{{ s.desc }}</p>
+              <p class="svc-extended-desc">{{ s.extendedDesc }}</p>
+            </div>
           </div>
+
         </div>
       }
     </div>
+
   </div>
 </section>

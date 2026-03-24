@@ -1,39 +1,41 @@
-<section class="experience-section section-padding">
-  <div class="container">
+<section class="exp2-section section-padding" id="experience">
 
-    <!-- Ghost backdrop -->
-    <div class="exp-ghost-header" aria-hidden="true">
-      <span class="ghost-label">WORK</span>
-    </div>
-
-    <div class="exp-luxury-grid">
-
-      <!-- Sticky left anchor -->
-      <div class="exp-sticky-label">
-        <span class="vertical-label">Selected Work Experience</span>
-        <div class="label-line"></div>
-      </div>
-
-      <!-- Timeline rows -->
-      <div class="exp-timeline" #expContainer>
-        @for (exp of experiences; track exp.company; let i = $index) {
-          <div class="exp-row interactive">
-            <div class="exp-row-top">
-              <span class="exp-index text-muted">0{{ i + 1 }}</span>
-              <span class="exp-date text-muted text-uppercase">{{ exp.date }}</span>
-            </div>
-            <h3 class="exp-role-title">{{ exp.role }}</h3>
-            <div class="exp-company-line">
-              <span class="exp-company-name">{{ exp.company }}</span>
-              <div class="exp-company-bar"></div>
-            </div>
-            <div class="exp-desc-reveal">
-              <div class="exp-desc-inner"><p>{{ exp.desc }}</p></div>
-            </div>
-          </div>
-        }
-      </div>
-
-    </div>
+  <!-- Section header bar -->
+  <div class="exp2-header-bar container">
+    <span class="exp2-label-accented">SELECTED WORK EXPERIENCE</span>
+    <div class="exp2-header-count text-muted">{{ experiences.length }} ROLES</div>
   </div>
+
+  <!-- One big brutalist block per experience -->
+  <div class="exp2-list" #expContainer>
+    @for (exp of experiences; track exp.company; let i = $index) {
+      <div class="exp2-block interactive" [class.exp2-block--alt]="i % 2 !== 0">
+
+        <!-- Massive number -->
+        <div class="exp2-num-col">
+          <span class="exp2-ghost-num">0{{ i + 1 }}</span>
+        </div>
+
+        <!-- Content -->
+        <div class="exp2-content-col container">
+
+          <!-- Top strip -->
+          <div class="exp2-top-strip">
+            <span class="exp2-date text-uppercase">{{ exp.date }}</span>
+            <div class="exp2-strip-line"></div>
+          </div>
+
+          <h3 class="exp2-role">{{ exp.role }}</h3>
+
+          <div class="exp2-company-row">
+            <span class="exp2-company-tag">{{ exp.company }}</span>
+          </div>
+
+          <p class="exp2-desc text-muted">{{ exp.desc }}</p>
+        </div>
+
+      </div>
+    }
+  </div>
+
 </section>
