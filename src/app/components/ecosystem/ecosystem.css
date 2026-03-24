@@ -151,7 +151,8 @@
 
 .tool-node:hover .tool-name {
   -webkit-text-stroke: 1.5px rgba(255,255,255,1);
-  transform: scale(1.02);
+  transform: scale(1.15);
+  filter: brightness(1.2);
 }
 
 .tool-node:hover .tool-name::after {

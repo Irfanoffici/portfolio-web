@@ -43,18 +43,28 @@ export class App implements OnInit, AfterViewInit, OnDestroy {
 
     this.ngZone.runOutsideAngular(() => {
       window.addEventListener('mousemove', (e) => {
-        if (this.globalTooltip && this.tooltipService.hoveredTool()) {
+        const hoveredTool = this.tooltipService.hoveredTool();
+        if (!hoveredTool) return;
+
+        // Ultimate safety: if we are showing a tooltip but mouse is NOT in arsenal, hide it
+        const target = e.target as HTMLElement;
+        if (!target.closest('.arsenal-section') && !target.closest('.ars-tooltip-global')) {
+          this.ngZone.run(() => this.tooltipService.hide());
+          return;
+        }
+
+        if (this.globalTooltip) {
           gsap.to(this.globalTooltip.nativeElement, {
-            x: e.clientX + 10,
-            y: e.clientY + 10,
-            duration: 0.1,
-            ease: 'power2.out'
+            x: e.clientX + 15,
+            y: e.clientY + 15,
+            duration: 0.15,
+            ease: 'power2.out',
+            overwrite: 'auto'
           });
         }
       });
       
-      // Final safety: if window loses focus, hide tooltip
-      window.addEventListener('blur', () => this.tooltipService.hide());
+      window.addEventListener('blur', () => this.ngZone.run(() => this.tooltipService.hide()));
     });
   }
 
