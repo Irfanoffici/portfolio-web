@@ -46,8 +46,8 @@
 .line-reveal {
   display: block;
   overflow: hidden; /* For GSAP reveal animation */
-  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
-  transform: translateY(100px); /* fallback before GSAP */
+  /* IMPORTANT: clip-path and transform are now set by GSAP.set() only — not CSS */
+  /* This ensures browsers don't hide hero text before GSAP initialises, fixing LCP */
 }
 
 .hero-description {
@@ -225,4 +225,34 @@
   0% { transform: translateY(0px) rotate(-5deg); }
   50% { transform: translateY(-20px) rotate(0deg); }
   100% { transform: translateY(0px) rotate(-5deg); }
+}
+/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+@media (max-width: 768px) {
+  .hero-section {
+    padding-top: 12vh;
+    min-height: 100svh;
+  }
+
+  .hero-graphics {
+    display: none; /* hide portrait on mobile to avoid CLS + layout issues */
+  }
+
+  .hero-title {
+    font-size: clamp(3.5rem, 15vw, 6rem);
+    letter-spacing: -0.03em;
+  }
+
+  .hero-description {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    max-width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  .marquee-content {
+    font-size: clamp(4rem, 18vw, 8rem);
+  }
+
+  .scroll-indicator {
+    display: none;
+  }
 }

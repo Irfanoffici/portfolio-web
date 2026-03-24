@@ -177,3 +177,33 @@ body.light-theme .ars-tooltip {
   color: var(--text-color);
   margin: 0;
 }
+
+/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+@media (max-width: 768px) {
+  .arsenal-header { margin-bottom: 4rem; }
+
+  .arsenal-title {
+    font-size: clamp(3rem, 18vw, 7rem);
+  }
+
+  .ars-tool-name {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+  }
+
+  .ars-separator {
+    font-size: clamp(2.5rem, 10vw, 5rem);
+    padding: 0 1.5rem;
+  }
+
+  .arsenal-cat-row { padding: 2.5rem 0; }
+
+  .ars-tooltip {
+    position: fixed;
+    top: auto !important;
+    left: 1rem !important;
+    bottom: 1rem;
+    right: 1rem;
+    max-width: none;
+    transform: none !important;
+  }
+}

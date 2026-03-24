@@ -319,3 +319,30 @@
   letter-spacing: 0.05em;
   color: var(--accent-color);
 }
+/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+@media (max-width: 768px) {
+  .footer-content {
+    padding-top: 5rem;
+    gap: 4rem;
+  }
+
+  .footer-massive-heading {
+    font-size: clamp(2.5rem, 12vw, 5rem);
+  }
+
+  .send-mail-btn {
+    padding: 1.8rem 2rem;
+  }
+
+  .send-mail-text {
+    font-size: 1.1rem;
+  }
+
+  .footer-link-col {
+    gap: 0.5rem;
+  }
+
+  .link-name {
+    font-size: 1.4rem;
+  }
+}

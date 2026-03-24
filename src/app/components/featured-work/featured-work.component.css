@@ -161,3 +161,36 @@ body.light-theme .fw-terminal-tag {
   color: var(--bg-lighter);
   background-color: var(--text-color);
 }
+
+/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+@media (max-width: 768px) {
+  .fw-sticky-side {
+    position: static;
+    flex: unset;
+  }
+
+  .fw-vertical-label {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+
+  .fw-massive-name {
+    font-size: clamp(2rem, 10vw, 4rem);
+  }
+
+  .fw-monolithic-item:hover .fw-massive-name {
+    transform: none;
+    color: var(--accent-color);
+    -webkit-text-stroke: 1.5px var(--accent-color);
+  }
+
+  .fw-monolithic-item {
+    padding: 4rem 0;
+  }
+
+  .fw-desc {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+
+  .fw-tags { gap: 0.6rem; }
+}

@@ -249,3 +249,40 @@ body.light-theme .abt-stat-box:hover {
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
+/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+@media (max-width: 768px) {
+  .mani-line {
+    font-size: clamp(2.2rem, 10vw, 4rem);
+  }
+  /* Remove aggressive indents on mobile */
+  .mani-indent-1 { padding-left: 4vw; }
+  .mani-indent-2 { padding-left: 8vw; }
+  .mani-indent-3 { padding-left: 2vw; }
+
+  .abt-manifesto { margin-bottom: 8vh; }
+
+  .abt-image-col {
+    display: none; /* hide portrait on small screens for cleaner layout */
+  }
+
+  .abt-philosophy-grid {
+    gap: 2.5rem;
+    padding: 3rem 0;
+  }
+
+  .abt-stats-matrix {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .abt-stat-box {
+    padding: 3rem 1rem;
+  }
+
+  .abt-stat-huge {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  .abt-focus-box {
+    padding-left: 1.2rem;
+  }
+}

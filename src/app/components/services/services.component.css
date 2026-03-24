@@ -153,3 +153,36 @@ body.light-theme .svc-icon { border-color: rgba(0,0,0,0.2); }
   max-width: 90%;
   padding-bottom: 1rem;
 }
+/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+@media (max-width: 768px) {
+  .svc-sticky-bar {
+    position: static;
+    flex: unset;
+  }
+
+  .svc-massive-label {
+    font-size: clamp(2.5rem, 12vw, 5rem);
+    line-height: 0.9;
+  }
+
+  .svc-name {
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  .svc-item-header {
+    gap: 1rem;
+  }
+
+  .svc-body-inner {
+    padding-left: 0;
+  }
+
+  .svc-item:hover .svc-item-header {
+    transform: none;
+  }
+
+  .svc-icon {
+    width: 36px;
+    height: 36px;
+  }
+}

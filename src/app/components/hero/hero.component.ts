@@ -26,17 +26,26 @@ export class HeroComponent implements AfterViewInit {
   }
 
   initAnimations() {
+    // GSAP.set runs after first paint — sets initial hidden state only at runtime
+    const h1Lines = document.querySelectorAll('.line-reveal');
+    
+    gsap.set(h1Lines, {
+      y: 100,
+      clipPath: 'polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)'
+    });
+    gsap.set([this.preTitle.nativeElement, this.description.nativeElement, this.scrollIndicator.nativeElement], {
+      opacity: 0,
+      y: 20
+    });
+
     const tl = gsap.timeline({ defaults: { ease: 'power4.out', duration: 1.5 } });
     
-    // Select the split lines manually since query children grabs the h1, not the spans
-    const h1Lines = document.querySelectorAll('.line-reveal');
-
     // Title reveal
     tl.to(h1Lines, {
       y: 0,
       clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
       stagger: 0.15,
-      delay: 0.2
+      delay: 0.1
     })
     
     // Fade in other elements

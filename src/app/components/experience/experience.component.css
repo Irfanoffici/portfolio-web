@@ -180,3 +180,28 @@ body.light-theme .exp2-company-tag { border-color: rgba(0,0,0,0.18); }
   line-height: 1.75;
   max-width: 80%;
 }
+
+/* ━━━━━━━━━ MOBILE RESPONSIVE ━━━━━━━━━ */
+@media (max-width: 768px) {
+  .exp2-num-col {
+    width: clamp(3.5rem, 10vw, 6rem);
+    padding: 2.5rem 0;
+  }
+
+  .exp2-ghost-num {
+    font-size: clamp(2rem, 8vw, 4rem);
+  }
+
+  .exp2-content-col {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .exp2-role {
+    font-size: clamp(1.6rem, 7vw, 3rem);
+  }
+
+  .exp2-desc {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+}
