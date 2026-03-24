@@ -104,12 +104,12 @@ export class TechStackComponent implements AfterViewInit {
   onMoveTool(event: MouseEvent) {
     if (!this.hoveredTool || !this.tooltipElement) return;
     
-    // Smoothly track cursor
+    // Snappy tracking (butter smooth)
     gsap.to(this.tooltipElement.nativeElement, {
-      x: event.clientX + 30,
-      y: event.clientY + 30,
-      duration: 0.3,
-      ease: 'power3.out'
+      x: event.clientX + 20,
+      y: event.clientY + 20,
+      duration: 0.05,
+      ease: 'none'
     });
   }
 

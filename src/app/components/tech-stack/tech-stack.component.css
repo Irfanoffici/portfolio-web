@@ -137,7 +137,7 @@
   z-index: 9999;
   opacity: 0;
   transform: scale(0.9);
-  transition: opacity 0.2s, transform 0.2s;
+  transition: opacity 0.2s;
   background-color: var(--bg-darker);
   border: 1px solid rgba(255,255,255,0.1);
   padding: 2rem;
